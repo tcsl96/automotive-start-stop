@@ -1,76 +1,70 @@
-#include <stdio.h>
 #include <stdbool.h>
+#include "header/dynamics.h"
+#include "header/power.h"
+#include "header/safety.h"
+#include "header/hardware.h"
 
-bool buttonPressed, seatbeltSensor, obsSensor, hoodSensor, batteryStatus, speedStatus;
-bool brakeStatus, obsStatus, seatbeltStatus, hoodStatus, tempCheck, batteryCheck, brakeCheck, startStopStatus, speedCheck, hardwareTest, systemTest;
-float cyc_Mph, fc_Temp, ess_SOC_hist, brake_torque, cyc_Kph;
+// misc
+bool button_pressed;
+bool start_stop_status;
+bool turn_engine_off;
 
-// Declaring simulink functions developed for the model
+// dynamics variables
+float mpha;
+unsigned char clutch_state;
 
-float acquireSpeed(cyc_Mph)
+// power variables
+float fc_temp[4], SOC;
+
+// safety variables
+bool hood_status, trunk_status, door_status, seatbelt_status;
+
+// hardware variables
+bool speed_sensor, brake_sensor, temperature_sensor, battery_sensor, hood_sensor, trunk_sensor, door_sensor, seatbelt_sensor;
+
+// returned variables
+bool hardware_status, system_status;
+bool speed_status, brake_status, temp_status, battery_status, safety_status;
+
+bool checkSystem()
 {
-    cyc_Kph = cyc_Mph * 1.6095;
-    return(cyc_Kph);
-
-    if (cyc_Kph > 5)
-        speedCheck = true;
-    else
-        speedCheck = false;
-
+    speed_status = checkSpeed(mpha);
+    brake_status = checkBrake(clutch_state);
+    temp_status = checkTemperature(fc_temp[1]);
+    battery_status = checkBattery(SOC);
+    safety_status = checkSafety(hood_status, trunk_status, door_status, seatbelt_status);
+    return (speed_status && brake_status && temp_status && battery_status && safety_status);
 }
 
-bool acquireTemperature(fc_Temp)
+bool startStop()
 {
-    if (90 < fc_Temp < 104)
-        tempCheck = true;
-    else
-        tempCheck = false;
-}
+    hardware_status = checkHardware(
+        speed_sensor,
+        brake_sensor,
+        temperature_sensor,
+        battery_sensor,
+        hood_sensor,
+        trunk_sensor,
+        door_sensor,
+        seatbelt_sensor
+    );
 
-bool acquireBatteryCharge(ess_SOC_hist)
-{
-    if (ess_SOC_hist < 0.5)
-        batteryCheck = true;
-    else
-        batteryCheck = false;
-}
+    system_status = checkSystem();
 
-bool acquireBrakeUsage(brake_torque)
-{
-    if (brake_torque > 0)
-        brakeCheck = true;
+    if ((button_pressed && hardware_status && system_status) == true)
+    {
+        start_stop_status = true;
+    }
     else
-        brakeCheck = false;
-}
-
-bool testHardware(batteryStatus, speedStatus, brakeStatus, obsStatus, seatbeltStatus, hoodStatus)
-{
-    if (batteryStatus && speedStatus && brakeStatus && obsStatus && seatbeltStatus && hoodStatus == true)
-        hardwareTest = true;
-    else
-        hardwareTest = false;
-}
-
-bool testSystem(buttonPressed, seatbeltSensor, obsSensor, hoodSensor, tempCheck, batteryCheck, brakeCheck, speedCheck)
-{
-    acquireSpeed(cyc_Mph);
-    acquireTemperature(fc_Temp);
-    acquireBatteryCharge(ess_SOC_hist);
-    acquireBrakeUsage(brake_torque);
-
-    if (buttonPressed && seatbeltSensor && obsSensor && hoodSensor && tempCheck && batteryCheck && brakeCheck && speedCheck == true)
-        systemTest == true;
-    else
-        systemTest == false;
+    {
+        start_stop_status = false;
+    }
+    return start_stop_status;
 }
 
 int main()
 {
-    testHardware(batteryStatus, speedStatus, brakeStatus, obsStatus, seatbeltStatus, hoodStatus);
-    testSystem(buttonPressed, seatbeltSensor, obsSensor, hoodSensor, tempCheck, batteryCheck, brakeCheck, speedCheck);
+    turn_engine_off = startStop();
 
-    if (testHardware && testSystem == true)
-        startStopStatus = true;
-    else
-        startStopStatus = false;
+    return 0;
 }
