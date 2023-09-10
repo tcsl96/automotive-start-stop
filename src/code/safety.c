@@ -1,3 +1,6 @@
+
+// checks if all doors are closed, if not, the system will emit a warning sound (warning_Sound)
+
 bool checkSafety(
     bool *hood_status, 
     bool *trunk_status, 

@@ -2,6 +2,8 @@
 #include "header/hardware.h"
 #include "header/system.h"
 
+// Declaring the startStop function
+
 bool startStop(
     bool *button_pressed,
     bool *speed_sensor,
@@ -29,6 +31,8 @@ bool startStop(
     // returned variables
     bool hardware_status, system_status;
 
+    // checking if the hardware is ok
+
     hardware_status = checkHardware(
         speed_sensor,
         brake_sensor,
@@ -39,6 +43,8 @@ bool startStop(
         door_sensor,
         seatbelt_sensor
     );
+
+    // checking if the system is ok
 
     system_status = checkSystem(
         vehicle_speed_mph,
@@ -52,6 +58,8 @@ bool startStop(
         seatbelt_status
     );
 
+    // if both systems are ok, and the button is pressed, startStop will be enabled
+
     if ((*button_pressed && hardware_status && system_status) == true)
     {
         start_stop_status = true;
@@ -63,6 +71,8 @@ bool startStop(
 
     return !start_stop_status;
 }
+
+// declaring the main function
 
 int main()
 {

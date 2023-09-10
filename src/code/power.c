@@ -1,3 +1,6 @@
+
+// function responsible for checking if the motor temperature is inside the necessary limit
+
 bool checkTemperature(float *engine_internal_temp)
 {
     bool temp_check;
@@ -14,6 +17,8 @@ bool checkTemperature(float *engine_internal_temp)
     return temp_check;
 }
 
+// function responsible for checking if the battery has enough charge
+
 bool checkBattery(float *state_of_charge)
 {
     bool battery_check;
@@ -29,6 +34,8 @@ bool checkBattery(float *state_of_charge)
 
     return battery_check;
 }
+
+// power subsystem test, returning if the power system is working according to the requirements
 
 bool checkPower(float *engine_internal_temp, float *state_of_charge)
 {
