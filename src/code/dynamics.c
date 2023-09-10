@@ -1,9 +1,9 @@
-bool checkSpeed(float vehicle_speed_mph)
+bool checkSpeed(float *vehicle_speed_mph)
 {
     bool speed_check;
     float vehicle_speed_kph;
 
-    vehicle_speed_kph = vehicle_speed_mph * 1.6095;
+    vehicle_speed_kph = *vehicle_speed_mph * 1.6095;
 
     if (vehicle_speed_kph <= 5)
     {
@@ -17,21 +17,21 @@ bool checkSpeed(float vehicle_speed_mph)
     return speed_check;
 }
 
-bool checkBrake(bool is_braking, int time)
+bool checkBrake(bool *is_braking, int *time)
 {
     int braking_time = 0;
     static int begin = 0;
     bool brake_check;
 
-    if (is_braking == 1)
+    if (*is_braking == 1)
     {
         if (begin == 0)
         {
-            begin = time;
+            begin = *time;
         }
         else
         {
-            braking_time = time - begin;
+            braking_time = *time - begin;
         }
 
         if (braking_time >= 5)
@@ -49,7 +49,7 @@ bool checkBrake(bool is_braking, int time)
     return brake_check;
 }
 
-bool checkDynamics(float vehicle_speed_mph, bool is_braking, int time)
+bool checkDynamics(float *vehicle_speed_mph, bool *is_braking, int *time)
 {
     bool speed_status, brake_status, dynamics_check;
 
