@@ -1,4 +1,3 @@
 #include "../code/dynamics.c"
 
-bool checkSpeed(float vehicle_speed_mph);
-bool checkBrake(unsigned char brake_pressed);
+bool checkDynamics(float vehicle_speed_mph, bool is_braking, int time);

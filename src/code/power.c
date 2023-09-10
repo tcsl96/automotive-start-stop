@@ -14,11 +14,11 @@ bool checkTemperature(float engine_internal_temp)
     return temp_check;
 }
 
-bool checkBattery(float SOC)
+bool checkBattery(float state_of_charge)
 {
     bool battery_check;
 
-    if (SOC > 0.5)
+    if (state_of_charge > 0.5)
     {
         battery_check = true;
     }
@@ -28,4 +28,16 @@ bool checkBattery(float SOC)
     }
 
     return battery_check;
+}
+
+bool checkPower(float engine_internal_temp, float state_of_charge)
+{
+    bool temp_status, battery_status, power_check;
+    
+    temp_status = checkTemperature(engine_internal_temp);
+    battery_status = checkBattery(state_of_charge);
+
+    power_check = temp_status && battery_status;
+
+    return power_check;
 }

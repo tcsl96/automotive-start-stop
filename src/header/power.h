@@ -1,4 +1,3 @@
 #include "../code/power.c"
 
-bool checkTemperature(float engine_internal_temp);
-bool checkBattery(float SOC);
+bool checkPower(float engine_internal_temp, float state_of_charge);

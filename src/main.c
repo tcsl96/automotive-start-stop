@@ -5,13 +5,12 @@
 #include "header/hardware.h"
 
 // misc
-bool button_pressed;
-bool start_stop_status;
-bool turn_engine_off;
+bool button_pressed, start_stop_status, turn_engine_off;
 
 // dynamics variables
 float mpha;
-unsigned char clutch_state;
+int time;
+bool is_braking;
 
 // power variables
 float fc_temp[4], SOC;
@@ -24,16 +23,15 @@ bool speed_sensor, brake_sensor, temperature_sensor, battery_sensor, hood_sensor
 
 // returned variables
 bool hardware_status, system_status;
-bool speed_status, brake_status, temp_status, battery_status, safety_status;
+bool dynamics_status, power_status, safety_status;
 
 bool checkSystem()
 {
-    speed_status = checkSpeed(mpha);
-    brake_status = checkBrake(clutch_state);
-    temp_status = checkTemperature(fc_temp[1]);
-    battery_status = checkBattery(SOC);
+    dynamics_status = checkDynamics(mpha, is_braking, time);
+    power_status = checkPower(fc_temp[1], SOC);
     safety_status = checkSafety(hood_status, trunk_status, door_status, seatbelt_status);
-    return (speed_status && brake_status && temp_status && battery_status && safety_status);
+
+    return (dynamics_status && power_status && safety_status);
 }
 
 bool startStop()
@@ -59,6 +57,7 @@ bool startStop()
     {
         start_stop_status = false;
     }
+
     return start_stop_status;
 }
 
