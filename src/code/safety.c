@@ -1,5 +1,5 @@
 
-// checks if all doors are closed, if not, the system will emit a warning sound (warning_Sound)
+// Checks if hood, trunk, doors or seatbelt are setted up properly.
 
 bool checkSafety(
     bool *hood_status, 
@@ -10,10 +10,15 @@ bool checkSafety(
 {
     bool safety_check;
 
+    statusWarning(hood_status);
+    statusWarning(trunk_status);
+    statusWarning(door_status);
+    statusWarning(seatbelt_status);
+
     safety_check = (
-        *hood_status &&
-        *trunk_status &&
-        *door_status &&
+        *hood_status ||
+        *trunk_status ||
+        *door_status ||
         *seatbelt_status
     );
 

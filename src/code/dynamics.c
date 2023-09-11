@@ -51,12 +51,15 @@ bool checkBrake(bool *is_braking, int *time)
 
 bool checkDynamics(float *vehicle_speed_mph, bool *is_braking, int *time)
 {
-    bool speed_status, brake_status, dynamics_check;
+    bool dynamics_check;
+
+    // returned variables
+    bool speed_status, brake_status;
 
     speed_status = checkSpeed(vehicle_speed_mph);
     brake_status = checkBrake(is_braking, time);
 
-    dynamics_check = speed_status && brake_status;
+    dynamics_check = (speed_status && brake_status);
 
     return dynamics_check;
 }

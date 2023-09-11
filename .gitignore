@@ -1,1 +1,9 @@
 .vscode/
+advisor/
+slprj/
+*.slxc
+*.zip
+*.rar
+*.pdf
+*.txt
+*.exe

@@ -2,18 +2,19 @@
 #include "header/hardware.h"
 #include "header/system.h"
 
-// Declaring the startStop function
+// declaring the startStop function
 
 bool startStop(
     bool *button_pressed,
-    bool *speed_sensor,
-    bool *brake_sensor,
-    bool *temperature_sensor,
-    bool *battery_sensor,
-    bool *hood_sensor,
-    bool *trunk_sensor,
-    bool *door_sensor,
-    bool *seatbelt_sensor,
+    bool *speed_sensor_state,
+    bool *brake_sensor_state,
+    bool *eng_temp_sensor_state,
+    bool *battery_sensor_state,
+    bool *hood_sensor_state,
+    bool *trunk_sensor_state,
+    bool *door_sensor_state,
+    bool *seatbelt_sensor_state,
+    bool *air_cond_sensor_state,
     float *vehicle_speed_mph,
     bool *is_braking,
     int *time,
@@ -22,10 +23,10 @@ bool startStop(
     bool *hood_status,
     bool *trunk_status,
     bool *door_status,
-    bool *seatbelt_status
+    bool *seatbelt_status,
+    unsigned char *air_cond_speed
 )
 {
-    // misc
     bool start_stop_status;
 
     // returned variables
@@ -34,14 +35,15 @@ bool startStop(
     // checking if the hardware is ok
 
     hardware_status = checkHardware(
-        speed_sensor,
-        brake_sensor,
-        temperature_sensor,
-        battery_sensor,
-        hood_sensor,
-        trunk_sensor,
-        door_sensor,
-        seatbelt_sensor
+        speed_sensor_state,
+        brake_sensor_state,
+        eng_temp_sensor_state,
+        battery_sensor_state,
+        hood_sensor_state,
+        trunk_sensor_state,
+        door_sensor_state,
+        seatbelt_sensor_state,
+        air_cond_sensor_state
     );
 
     // checking if the system is ok
@@ -55,7 +57,8 @@ bool startStop(
         hood_status,
         trunk_status,
         door_status,
-        seatbelt_status
+        seatbelt_status,
+        air_cond_speed
     );
 
     // if both systems are ok, and the button is pressed, startStop will be enabled
@@ -76,11 +79,14 @@ bool startStop(
 
 int main()
 {
-    // misc
+    // miscellaneous variables
     bool button_pressed, engine_status;
 
     // hardware variables
-    bool speed_sensor, brake_sensor, temperature_sensor, battery_sensor, hood_sensor, trunk_sensor, door_sensor, seatbelt_sensor;
+    bool speed_sensor_state, brake_sensor_state;
+    bool eng_temp_sensor_state, battery_sensor_state;
+    bool hood_sensor_state, trunk_sensor_state, door_sensor_state, seatbelt_sensor_state;
+    bool air_cond_sensor_state;
 
     // dynamics variables
     float mpha;
@@ -93,16 +99,20 @@ int main()
     // safety variables
     bool hood_status, trunk_status, door_status, seatbelt_status;
 
+    // wellbeing variables
+    unsigned char air_cond_speed;
+
     engine_status = startStop(
         &button_pressed,
-        &speed_sensor,
-        &brake_sensor,
-        &temperature_sensor,
-        &battery_sensor,
-        &hood_sensor,
-        &trunk_sensor,
-        &door_sensor,
-        &seatbelt_sensor,
+        &speed_sensor_state,
+        &brake_sensor_state,
+        &eng_temp_sensor_state,
+        &battery_sensor_state,
+        &hood_sensor_state,
+        &trunk_sensor_state,
+        &door_sensor_state,
+        &seatbelt_sensor_state,
+        &air_cond_sensor_state,
         &mpha,
         &lim_clutch_dis,
         &time,
@@ -111,7 +121,8 @@ int main()
         &hood_status,
         &trunk_status,
         &door_status,
-        &seatbelt_status
+        &seatbelt_status,
+        &air_cond_speed
     );
 
     return 0;

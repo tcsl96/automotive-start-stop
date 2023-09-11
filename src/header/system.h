@@ -1,7 +1,7 @@
 #include "../code/system.c"
 
 bool checkSystem(
-  float *vehicle_speed_mph,
+    float *vehicle_speed_mph,
     bool *is_braking,
     int *time,
     float *engine_internal_temp,
@@ -9,5 +9,6 @@ bool checkSystem(
     bool *hood_status,
     bool *trunk_status,
     bool *door_status,
-    bool *seatbelt_status
+    bool *seatbelt_status,
+    unsigned char *air_cond_speed
 );
