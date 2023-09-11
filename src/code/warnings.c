@@ -10,6 +10,8 @@ void statusWarning(bool *sensor_status)
     }
 }
 
+// checks if the sensors are drawing any power, using the boolean values sent to the ecu
+
 void brokenWarning(bool *sensor_state)
 {
     if (*sensor_state == false)

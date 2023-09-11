@@ -1,3 +1,7 @@
+
+// function responsible for guaranteeing that the AC cooling level is under the limit stated in the software requisits
+// for when the SOC is lower then 70%
+
 bool checkAirCond(unsigned char *air_cond_speed, float *state_of_charge)
 {
     bool air_cond_check;
@@ -13,6 +17,8 @@ bool checkAirCond(unsigned char *air_cond_speed, float *state_of_charge)
     
     return air_cond_check;
 }
+
+// function responsible for forwarding the info to the checkSystem function, and consequently, to the main function startStop
 
 bool checkWellbeing(unsigned char *air_cond_speed, float *state_of_charge)
 {

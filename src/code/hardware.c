@@ -16,7 +16,8 @@ bool checkHardware(
 )
 {
    // the hardware check will verify if the sensors are working properly
-   
+   // calls the function "brokenWarning" that verifies the sensor_status and sensor_state and prints a warning
+
     bool hardware_check;
 
     brokenWarning(speed_sensor_state);
@@ -28,6 +29,9 @@ bool checkHardware(
     brokenWarning(door_sensor_state);
     brokenWarning(seatbelt_sensor_state);
     brokenWarning(air_cond_sensor_state);
+
+    // function that checks if sensors are functioning, and runs an "and" function that tests if
+    // all doors are closed and if the AC is on or off
 
     hardware_check = (
         *speed_sensor_state && 

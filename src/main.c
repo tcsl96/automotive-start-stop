@@ -3,6 +3,7 @@
 #include "header/system.h"
 
 // declaring the startStop function
+// all variables are designed for being forwarded from the simulink model
 
 bool startStop(
     bool *button_pressed,
