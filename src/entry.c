@@ -44,38 +44,47 @@ bool seatbelt_status = true;
 // wellbeing variables
 unsigned char air_cond_speed = 3;
 
-void loadVariablesFromFile(float *mpha, bool *lim_clutch_dis, int *time, float *fc_tmp, float *SOC)
+void loadVariablesFromFile(float *p_mpha, bool *p_lim_clutch_dis, int *p_time, float *p_fc_tmp, float *p_SOC)
 {
     FILE *pFile;
-    int bytesCount;
-    long lSize, bytesRead = 0;
-    char *buffer;
+    int newlineCount = 0;
+    long fileSize, bytesRead = 0, bytesCount;
+    char *buffer, ch;
     size_t result;
 
     pFile = fopen("variables.txt", "r");
     if (pFile == NULL) {fputs ("File error", stderr); exit (1);}
 
+    // count newline characters
+    do {
+        ch = fgetc (pFile);
+        if (ch == '\n') 
+        {
+            newlineCount++;
+        }
+    } while (ch != EOF);
+
     // obtain file size:
     fseek(pFile, 0, SEEK_END);
-    lSize = ftell(pFile);
+    fileSize = ftell(pFile);
     rewind(pFile);
 
     // allocate memory to contain the whole file:
-    buffer = (char*) malloc(sizeof(char) * lSize);
+    buffer = (char*) malloc(sizeof(char) * fileSize);
     if (buffer == NULL) {fputs("Memory error", stderr); exit (2);}
 
     // copy the file into the buffer:
-    result = fread(buffer, sizeof(char), lSize, pFile);
-    if (result != lSize) {fputs("Reading error", stderr); exit (3);}
+    result = fread(buffer, sizeof(char), fileSize, pFile);
+    if (result != fileSize - newlineCount) {fputs("Reading error", stderr); exit (3);}
 
     for (int i = 0; i < SIM_TIME; i++)
     {
-        sscanf(buffer + bytesRead, "%f %d %d %f %f\n%n", mpha, lim_clutch_dis, time, fc_tmp, SOC, &bytesCount);
-        mpha++;
-        lim_clutch_dis++;
-        time++;
-        fc_tmp++;
-        SOC++;
+        sscanf(buffer + bytesRead, "%f %d %d %f %f\n%n", p_mpha, p_lim_clutch_dis, p_time, p_fc_tmp, p_SOC, &bytesCount);
+        p_mpha++;
+        p_lim_clutch_dis++;
+        p_time++;
+        p_fc_tmp++;
+        p_SOC++;
         bytesRead += bytesCount;
     }
 

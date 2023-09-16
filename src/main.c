@@ -84,8 +84,6 @@ int main()
 
     for (int i = 0; i < SIM_TIME; i++)
     {
-        // printf("%f\t%d\t%d\t%f\t%f\n", *p_mpha, *p_lim_clutch_dis, *p_time, *p_fc_tmp, *p_SOC);
-
         engine_status = startStop(
             &button_pressed,
             &speed_sensor_state,
