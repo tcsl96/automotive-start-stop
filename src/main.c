@@ -1,4 +1,4 @@
-#include <stdbool.h>
+#include "entry.c"
 #include "header/hardware.h"
 #include "header/system.h"
 
@@ -80,51 +80,43 @@ bool startStop(
 
 int main()
 {
-    // miscellaneous variables
-    bool button_pressed, engine_status;
+    loadVariablesFromFile(p_mpha, p_lim_clutch_dis, p_time, p_fc_tmp, p_SOC);
 
-    // hardware variables
-    bool speed_sensor_state, brake_sensor_state;
-    bool eng_temp_sensor_state, battery_sensor_state;
-    bool hood_sensor_state, trunk_sensor_state, door_sensor_state, seatbelt_sensor_state;
-    bool air_cond_sensor_state;
+    for (int i = 0; i < SIM_TIME; i++)
+    {
+        // printf("%f\t%d\t%d\t%f\t%f\n", *p_mpha, *p_lim_clutch_dis, *p_time, *p_fc_tmp, *p_SOC);
 
-    // dynamics variables
-    float mpha;
-    bool lim_clutch_dis;
-    int time;
+        engine_status = startStop(
+            &button_pressed,
+            &speed_sensor_state,
+            &brake_sensor_state,
+            &eng_temp_sensor_state,
+            &battery_sensor_state,
+            &hood_sensor_state,
+            &trunk_sensor_state,
+            &door_sensor_state,
+            &seatbelt_sensor_state,
+            &air_cond_sensor_state,
+            p_mpha,
+            p_lim_clutch_dis,
+            p_time,
+            p_fc_tmp,
+            p_SOC,
+            &hood_status,
+            &trunk_status,
+            &door_status,
+            &seatbelt_status,
+            &air_cond_speed
+        );
 
-    // power variables
-    float fc_temp[4], SOC;
+        p_mpha++;
+        p_lim_clutch_dis++;
+        p_time++;
+        p_fc_tmp++;
+        p_SOC++;
 
-    // safety variables
-    bool hood_status, trunk_status, door_status, seatbelt_status;
-
-    // wellbeing variables
-    unsigned char air_cond_speed;
-
-    engine_status = startStop(
-        &button_pressed,
-        &speed_sensor_state,
-        &brake_sensor_state,
-        &eng_temp_sensor_state,
-        &battery_sensor_state,
-        &hood_sensor_state,
-        &trunk_sensor_state,
-        &door_sensor_state,
-        &seatbelt_sensor_state,
-        &air_cond_sensor_state,
-        &mpha,
-        &lim_clutch_dis,
-        &time,
-        &fc_temp[1],
-        &SOC,
-        &hood_status,
-        &trunk_status,
-        &door_status,
-        &seatbelt_status,
-        &air_cond_speed
-    );
+        printf("%d\n", engine_status);
+    }
 
     return 0;
 }

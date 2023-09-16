@@ -7,3 +7,4 @@ slprj/
 *.pdf
 *.txt
 *.exe
+!variables.txt

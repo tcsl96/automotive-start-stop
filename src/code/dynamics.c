@@ -42,7 +42,6 @@ bool checkBrake(bool *is_braking, int *time)
     else
     {
         brake_check = false;
-        braking_time = 0;
         begin = 0;
     }
 
