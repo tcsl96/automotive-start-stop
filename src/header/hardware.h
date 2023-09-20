@@ -1,3 +1,4 @@
+#pragma once
 #include "../code/hardware.c"
 
 bool checkHardware(

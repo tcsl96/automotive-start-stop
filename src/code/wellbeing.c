@@ -1,3 +1,4 @@
+#include "../header/warnings.h"
 
 // function responsible for guaranteeing that the AC cooling level is under the limit stated in the software requisits
 // for when the SOC is lower then 70%

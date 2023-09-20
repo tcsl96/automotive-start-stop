@@ -1,3 +1,4 @@
+#pragma once
 #include "../code/safety.c"
 
 bool checkSafety(
