@@ -1,5 +1,4 @@
-#pragma once
 #include "../code/warnings.c"
 
-void statusWarning(bool *sensor_status);
-void brokenWarning(bool *sensor_state);
+unsigned char statusWarning(unsigned char sensor_status);
+unsigned char brokenWarning(unsigned char sensor_state);

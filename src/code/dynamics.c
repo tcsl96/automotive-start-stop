@@ -1,27 +1,21 @@
-bool checkSpeed(float *vehicle_speed_mph)
+unsigned char checkSpeed(float *vehicle_speed_mph)
 {
-    bool speed_check;
-    float vehicle_speed_kph;
-
-    vehicle_speed_kph = *vehicle_speed_mph * 1.6095;
-
-    if (vehicle_speed_kph <= 5)
+    if (*vehicle_speed_mph * 1.6095 < 5)
     {
-        speed_check = true;
+        bool.speed_check = 1;
     }
     else
     {
-        speed_check = false;
+        bool.speed_check = 0;
     }
 
-    return speed_check;
+    return bool.speed_check;
 }
 
-bool checkBrake(bool *is_braking, int *time)
+unsigned char checkBrake(unsigned char *is_braking, short int *time)
 {
-    int braking_time = 0;
-    static int begin = 0;
-    bool brake_check;
+    misc.braking_time = 0;
+    static short int begin = 0;
 
     if (*is_braking == 1)
     {
@@ -31,34 +25,32 @@ bool checkBrake(bool *is_braking, int *time)
         }
         else
         {
-            braking_time = *time - begin;
+            if (*time - begin > 5)
+            {
+                misc.braking_time = 5;
+            }
+            else
+            {
+                misc.braking_time = *time - begin;
+            }
         }
 
-        if (braking_time >= 5)
+        if (misc.braking_time == 5)
         {
-            brake_check = true;
-        }   
+            bool.brake_check = 1;
+        }
+        else {}
     }
     else
     {
-        brake_check = false;
+        bool.brake_check = 0;
         begin = 0;
     }
 
-    return brake_check;
+    return bool.brake_check;
 }
 
-bool checkDynamics(float *vehicle_speed_mph, bool *is_braking, int *time)
+unsigned char checkDynamics()
 {
-    bool dynamics_check;
-
-    // returned variables
-    bool speed_status, brake_status;
-
-    speed_status = checkSpeed(vehicle_speed_mph);
-    brake_status = checkBrake(is_braking, time);
-
-    dynamics_check = (speed_status && brake_status);
-
-    return dynamics_check;
+    return (checkSpeed(p_mpha) && checkBrake(p_lim_clutch_dis, p_time));
 }
