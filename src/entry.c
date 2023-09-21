@@ -50,64 +50,63 @@ struct miscellaneous
 struct miscellaneous misc;
 
 // dynamics variables
-float mpha[SIM_SIZE];
-unsigned char lim_clutch_dis[SIM_SIZE];
-short int time[SIM_SIZE];
-float *p_mpha = mpha;
-unsigned char *p_lim_clutch_dis = lim_clutch_dis;
-short int *p_time = time;
+float mpha;
+unsigned char lim_clutch_dis;
+short int time;
 
 // power variables
-float fc_tmp[SIM_SIZE];
-float SOC[SIM_SIZE];
-float *p_fc_tmp = fc_tmp;
-float *p_SOC = SOC;
+float fc_tmp;
+float SOC;
 
-void loadVariablesFromFile(float *p_mpha, unsigned char *p_lim_clutch_dis, short int *p_time, float *p_fc_tmp, float *p_SOC)
+char * buffer;
+
+void storeFileOnBuffer()
 {
-    FILE *pFile;
-    int newlineCount = 0;
-    long fileSize, bytesRead = 0, bytesCount;
-    char *buffer, ch;
+    FILE * pFile;
+    short int newline_count = 0;
+    long int file_size = 0;
+    char file_char;
     size_t result;
 
+    // load the file
     pFile = fopen("variables.txt", "r");
-    if (pFile == NULL) {fputs ("File error", stderr); exit (1);}
+    if (pFile == NULL) { fputs("File error", stderr); exit (1); }
 
-    // count newline characters
-    do {
-        ch = fgetc (pFile);
-        if (ch == '\n') 
+    // count newline characters and obtain file size
+    do 
+    {
+        file_char = fgetc(pFile);
+        if (file_char == '\n') 
         {
-            newlineCount++;
+            newline_count++;
+            file_size += 2;
         }
-    } while (ch != EOF);
-
-    // obtain file size:
-    fseek(pFile, 0, SEEK_END);
-    fileSize = ftell(pFile);
+        else
+        {
+            file_size++;
+        }
+    }
+    while (file_char != EOF);
+    file_size--;
     rewind(pFile);
 
     // allocate memory to contain the whole file:
-    buffer = (char*) malloc(sizeof(char) * fileSize);
-    if (buffer == NULL) {fputs("Memory error", stderr); exit (2);}
+    buffer = (char *) malloc(sizeof(char) * file_size);
+    if (buffer == NULL) { fputs("Memory error", stderr); exit (2); }
 
     // copy the file into the buffer:
-    result = fread(buffer, sizeof(char), fileSize, pFile);
-    if (result != fileSize - newlineCount) {fputs("Reading error", stderr); exit (3);}
-
-    for (int i = 0; i < SIM_SIZE; i++)
-    {
-        sscanf(buffer + bytesRead, "%f %d %d %f %f\n%n", p_mpha, p_lim_clutch_dis, p_time, p_fc_tmp, p_SOC, &bytesCount);
-        p_mpha++;
-        p_lim_clutch_dis++;
-        p_time++;
-        p_fc_tmp++;
-        p_SOC++;
-        bytesRead += bytesCount;
-    }
+    result = fread(buffer, sizeof(char), file_size, pFile);
+    if (result != file_size - newline_count) { fputs("Reading error", stderr); exit (3); }
 
     // terminate
     fclose(pFile);
-    free(buffer);
+}
+
+void loadVarsFromBuffer()
+{
+    static long int bytes_read = 0;
+    unsigned char bytes_count;
+
+    sscanf(buffer + bytes_read, "%f %d %d %f %f\n%n", &mpha, &lim_clutch_dis, &time, &fc_tmp, &SOC, &bytes_count);
+    bytes_read += bytes_count;
 }
