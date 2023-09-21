@@ -1,3 +1,4 @@
+#include "../header/warnings.h"
 // Function for checking if the hardware is working as expected.
 // If any sensors are not drawing power, their variable will be 0, thus returning a 0 value to the startStop function.
 
