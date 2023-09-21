@@ -1,6 +1,6 @@
-unsigned char checkSpeed(float *vehicle_speed_mph)
+unsigned char checkSpeed(float vehicle_speed_mph)
 {
-    if (*vehicle_speed_mph * 1.6095 < 5)
+    if (vehicle_speed_mph * 1.6095 < 5)
     {
         bool.speed_check = 1;
     }
@@ -12,26 +12,26 @@ unsigned char checkSpeed(float *vehicle_speed_mph)
     return bool.speed_check;
 }
 
-unsigned char checkBrake(unsigned char *is_braking, short int *time)
+unsigned char checkBrake(unsigned char is_braking, short int time)
 {
     misc.braking_time = 0;
     static short int begin = 0;
 
-    if (*is_braking == 1)
+    if (is_braking == 1)
     {
         if (begin == 0)
         {
-            begin = *time;
+            begin = time;
         }
         else
         {
-            if (*time - begin > 5)
+            if (time - begin > 5)
             {
                 misc.braking_time = 5;
             }
             else
             {
-                misc.braking_time = *time - begin;
+                misc.braking_time = time - begin;
             }
         }
 
@@ -52,5 +52,5 @@ unsigned char checkBrake(unsigned char *is_braking, short int *time)
 
 unsigned char checkDynamics()
 {
-    return (checkSpeed(p_mpha) && checkBrake(p_lim_clutch_dis, p_time));
+    return (checkSpeed(mpha) && checkBrake(lim_clutch_dis, time));
 }
