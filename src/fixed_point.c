@@ -1,10 +1,9 @@
-#include <stdbool.h>
 #include <stdio.h>
 #include <math.h>
 
-short int max_abs_val, integer_part = 0, decimal_part = 0;
+short int max_abs_val;
 float resolution;
-bool is_signed;
+unsigned char is_signed, integer_part = 0, decimal_part = 0;
 
 int main() {
     max_abs_val = 100;
@@ -25,15 +24,7 @@ int main() {
         decimal_part++;
     }
 
-    // printf("inteiro = %d decimal = %d", integer_part, decimal_part);
-
-    // typedef union FIXEDX_Ytag {
-    //     int full;
-    //     struct partX_Ytag {
-    //         int integer: integer_part;
-    //         int fraction: decimal_part;
-    //     } part;
-    // } FIXEDX_Y;
+    printf("inteiro = %d decimal = %d", integer_part, decimal_part);
 
     return 0;
 }

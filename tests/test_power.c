@@ -4,7 +4,7 @@
 
 // test variables
 
-float int_temp, soc;
+float test_fc_tmp, soc;
 
 // Defining start functions
 
@@ -14,13 +14,13 @@ void tearDown() {};
 // Defining test functions
 
 void testPowerCheckEngTempTrue() {
-    int_temp = 100;
-    TEST_ASSERT((checkEngTemp(int_temp) == 1));
+    test_fc_tmp = 100;
+    TEST_ASSERT((checkEngTemp(test_fc_tmp) == 1));
 }
 
 void testPowerCheckEngTempFalse() {
-    int_temp = 50;
-    TEST_ASSERT((checkEngTemp(int_temp) == 0));
+    test_fc_tmp = 50;
+    TEST_ASSERT((checkEngTemp(test_fc_tmp) == 0));
 }
 
 void testPowerCheckBatteryTrue() {

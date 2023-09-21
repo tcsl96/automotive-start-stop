@@ -1,7 +1,7 @@
 // Function responsible for checking if the motor temperature is inside the necessary limits.
 unsigned char checkEngTemp(float engine_internal_temp)
 {
-    if (90 < engine_internal_temp < 104)
+    if (engine_internal_temp > 90 && engine_internal_temp < 104)
     {
         bool.eng_temp_check = 1;
     }
@@ -9,6 +9,8 @@ unsigned char checkEngTemp(float engine_internal_temp)
     {
         bool.eng_temp_check = 0;
     }
+
+    printf("%d", bool.eng_temp_check);
 
     return bool.eng_temp_check;
 }

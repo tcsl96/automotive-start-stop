@@ -37,6 +37,15 @@ struct boolean
     unsigned char door_sensor_state : 1;
     unsigned char seatbelt_sensor_state : 1;
     unsigned char air_cond_sensor_state : 1;
+
+    // functions variables
+    unsigned char hardware_status : 1;
+    unsigned char system_status : 1;
+
+    unsigned char dynamics_status : 1;
+    unsigned char power_status : 1;
+    unsigned char safety_status : 1;
+    unsigned char wellbeing_status : 1;
 };
 
 struct boolean bool;
@@ -105,7 +114,7 @@ void storeFileOnBuffer()
 void loadVarsFromBuffer()
 {
     static long int bytes_read = 0;
-    unsigned char bytes_count;
+    long int bytes_count;
 
     sscanf(buffer + bytes_read, "%f %d %d %f %f\n%n", &mpha, &lim_clutch_dis, &time, &fc_tmp, &SOC, &bytes_count);
     bytes_read += bytes_count;

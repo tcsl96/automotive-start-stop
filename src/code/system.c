@@ -6,5 +6,10 @@
 // function for testing the overall state of the system, based on the requirements
 unsigned char checkSystem()
 {
-    return (checkDynamics() && checkPower() && checkSafety() && checkWellbeing());
+    bool.dynamics_status = checkDynamics();
+    bool.power_status = checkPower();
+    bool.safety_status = checkSafety();
+    bool.wellbeing_status = checkWellbeing();
+
+    return (bool.dynamics_status && bool.power_status && bool.safety_status && bool.wellbeing_status);
 }

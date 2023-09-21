@@ -7,25 +7,25 @@
 // all variables are designed for being forwarded from the simulink model
 unsigned char startStop()
 {
-    return !(bool.button_pressed && checkHardware() && checkSystem());
+    bool.hardware_status = checkHardware();
+    bool.system_status = checkSystem();
+
+    return !(bool.button_pressed && bool.hardware_status && bool.system_status);
 }
 
-// declaring the main function
 int main()
 {
-    loadVariablesFromFile(p_mpha, p_lim_clutch_dis, p_time, p_fc_tmp, p_SOC);
+    storeFileOnBuffer();
 
-    for (short int i = 0; i < SIM_SIZE; i++)
+    for (int i = 0; i < 10; i++)
     {
+        loadVarsFromBuffer();
+
+        // printf("%f %d %d %f %f\n", mpha, lim_clutch_dis, time, fc_tmp, SOC);
+
         bool.engine_status = startStop();
 
-        p_mpha++;
-        p_lim_clutch_dis++;
-        p_time++;
-        p_fc_tmp++;
-        p_SOC++;
-
-        printf("%d\n", bool.engine_status);
+        // printf("%d\n", bool.engine_status);
     }
 
     return 0;
