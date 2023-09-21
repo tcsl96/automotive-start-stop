@@ -1,4 +1,5 @@
 #include "../src/entry.c"
+#include "../src/header/warnings.h"
 #include "src_unity/unity.c"
 #include "../src/header/hardware.h"
 
