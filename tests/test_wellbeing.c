@@ -5,7 +5,7 @@
 // test variables
 float soc;
 unsigned char air_spd;
-float *p_soc = &soc;
+
 
 // Defining start functions
 
@@ -16,50 +16,50 @@ void tearDown() {};
 
 void testWellbeingCheckAirCondFalse() {
     air_spd = 3;
-    *p_soc = 0.5;
-    TEST_ASSERT((checkAirCond(air_spd, p_soc) == 0));
+    soc = 0.5;
+    TEST_ASSERT((checkAirCond(air_spd, soc) == 0));
 }
 
 void testWellbeingCheckAirCondTrue1() {
     air_spd = 1;
-    *p_soc = 0.5;
-    TEST_ASSERT((checkAirCond(air_spd, p_soc) == 1));
+    soc = 0.5;
+    TEST_ASSERT((checkAirCond(air_spd, soc) == 1));
 }
 
 void testWellbeingCheckAirCondTrue2() {
     air_spd = 3;
-    *p_soc = 0.9;
-    TEST_ASSERT((checkAirCond(air_spd, p_soc) == 1));
+    soc = 0.9;
+    TEST_ASSERT((checkAirCond(air_spd, soc) == 1));
 }
 
 void testWellbeingCheckAirCondTrue3() {
     air_spd = 1;
-    *p_soc = 0.9;
-    TEST_ASSERT((checkAirCond(air_spd, p_soc) == 1));
+    soc = 0.9;
+    TEST_ASSERT((checkAirCond(air_spd, soc) == 1));
 }
 
 void testWellbeingCheckWelbeingFalse() {
     air_spd = 3;
-    *p_soc = 0.5;
-    TEST_ASSERT((checkWellbeing(air_spd, p_soc) == 1));
+    soc = 0.5;
+    TEST_ASSERT((checkWellbeing(air_spd, soc) == 1));
 }
 
 void testWellbeingCheckWelbeingTrue1() {
     air_spd = 1;
-    *p_soc = 0.5;
-    TEST_ASSERT((checkWellbeing(air_spd, p_soc) == 1));
+    soc = 0.5;
+    TEST_ASSERT((checkWellbeing(air_spd, soc) == 1));
 }
 
 void testWellbeingCheckWelbeingTrue2() {
     air_spd = 3;
-    *p_soc = 0.9;
-    TEST_ASSERT((checkWellbeing(air_spd, p_soc) == 1));
+    soc = 0.9;
+    TEST_ASSERT((checkWellbeing(air_spd, soc) == 1));
 }
 
 void testWellbeingCheckWelbeingTrue3() {
     air_spd = 1;
-    *p_soc = 0.9;
-    TEST_ASSERT((checkWellbeing(air_spd, p_soc) == 1));
+    soc = 0.9;
+    TEST_ASSERT((checkWellbeing(air_spd, soc) == 1));
 }
 
 // Main loop

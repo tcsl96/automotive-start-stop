@@ -1,3 +1,4 @@
+#include "../header/warnings.h"
 // Checks if hood, trunk, doors or seatbelt are setted up properly.
 unsigned char checkSafety()
 {
