@@ -6,6 +6,7 @@ unsigned char checkHardware()
    // the hardware check will verify if the sensors are working properly
    // calls the function "brokenWarning" that verifies the sensor_status and sensor_state and prints a warning
 
+    brokenWarning(bool.start_stop_sensor_state);
     brokenWarning(bool.speed_sensor_state);
     brokenWarning(bool.brake_sensor_state);
     brokenWarning(bool.eng_temp_sensor_state);
@@ -20,6 +21,7 @@ unsigned char checkHardware()
     // all doors are closed and if the AC is on or off
 
     return (
+        bool.start_stop_sensor_state &&
         bool.speed_sensor_state && 
         bool.brake_sensor_state && 
         bool.eng_temp_sensor_state && 

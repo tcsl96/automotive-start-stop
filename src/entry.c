@@ -28,6 +28,7 @@ struct boolean
     unsigned char air_cond_check : 1;
 
     // hardware variables
+    unsigned char start_stop_sensor_state : 1;
     unsigned char speed_sensor_state : 1;
     unsigned char brake_sensor_state : 1;
     unsigned char eng_temp_sensor_state : 1;

@@ -5,6 +5,7 @@
 
 // declaring the startStop function
 // all variables are designed for being forwarded from the simulink model
+
 unsigned char startStop()
 {
     bool.hardware_status = checkHardware();

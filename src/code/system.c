@@ -4,6 +4,7 @@
 #include "../header/wellbeing.h"
 
 // function for testing the overall state of the system, based on the requirements
+
 unsigned char checkSystem()
 {
     bool.dynamics_status = checkDynamics();
