@@ -1,9 +1,17 @@
-#include <stdio.h>
-#include <math.h>
+#ifndef _GCC_WRAP_STDINT_H
+    #include <stdint.h>
+#endif
+#ifndef _INC_STDIO
+    #include <stdio.h>
+#endif
+#ifndef _MATH_H_
+    #include <math.h>
+#endif
 
-short int max_abs_val;
+uint16_t max_abs_val;
 float resolution;
-unsigned char is_signed, integer_part = 0, decimal_part = 0;
+uint8_t is_signed, integer_part = 0, decimal_part = 0;
+
 
 int main() {
     max_abs_val = 100;

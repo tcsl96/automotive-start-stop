@@ -1,16 +1,21 @@
 // Checks if hood, trunk, doors or seatbelt are setted up properly.
 
-unsigned char checkSafety()
+uint8_t checkSafety(
+    uint8_t hood_sensor_value,
+    uint8_t trunk_sensor_value,
+    uint8_t door_sensor_value,
+    uint8_t seatbelt_sensor_value
+)
 {
-    statusWarning(bool.hood_sensor_status);
-    statusWarning(bool.trunk_sensor_status);
-    statusWarning(bool.door_sensor_status);
-    statusWarning(bool.seatbelt_sensor_status);
+    safetyWarning(hood_sensor_value);
+    safetyWarning(trunk_sensor_value);
+    safetyWarning(door_sensor_value);
+    safetyWarning(seatbelt_sensor_value);
 
     return (
-        bool.hood_sensor_status ||
-        bool.trunk_sensor_status ||
-        bool.door_sensor_status ||
-        bool.seatbelt_sensor_status
+        hood_sensor_value ||
+        trunk_sensor_value ||
+        door_sensor_value ||
+        seatbelt_sensor_value
     );
 }

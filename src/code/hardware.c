@@ -1,36 +1,47 @@
 // Function for checking if the hardware is working as expected.
 // If any sensors are not drawing power, their variable will be 0, thus returning a 0 value to the startStop function.
 
-unsigned char checkHardware()
+uint8_t checkHardware(
+    uint8_t start_stop_sensor_status,
+    uint8_t speed_sensor_status,
+    uint8_t brake_sensor_status,
+    uint8_t eng_temp_sensor_status,
+    uint8_t battery_sensor_status,
+    uint8_t hood_sensor_status,
+    uint8_t trunk_sensor_status,
+    uint8_t door_sensor_status,
+    uint8_t seatbelt_sensor_status,
+    uint8_t air_cond_sensor_status
+)
 {
    // the hardware check will verify if the sensors are working properly
-   // calls the function "brokenWarning" that verifies the sensor_status and sensor_state and prints a warning
+   // calls the function "brokenWarning" that verifies the sensor_status and sensor_status and prints a warning
 
-    brokenWarning(bool.start_stop_sensor_state);
-    brokenWarning(bool.speed_sensor_state);
-    brokenWarning(bool.brake_sensor_state);
-    brokenWarning(bool.eng_temp_sensor_state);
-    brokenWarning(bool.battery_sensor_state);
-    brokenWarning(bool.hood_sensor_state);
-    brokenWarning(bool.trunk_sensor_state);
-    brokenWarning(bool.door_sensor_state);
-    brokenWarning(bool.seatbelt_sensor_state);
-    brokenWarning(bool.air_cond_sensor_state);
+    brokenWarning(start_stop_sensor_status);
+    brokenWarning(speed_sensor_status);
+    brokenWarning(brake_sensor_status);
+    brokenWarning(eng_temp_sensor_status);
+    brokenWarning(battery_sensor_status);
+    brokenWarning(hood_sensor_status);
+    brokenWarning(trunk_sensor_status);
+    brokenWarning(door_sensor_status);
+    brokenWarning(seatbelt_sensor_status);
+    brokenWarning(air_cond_sensor_status);
 
     // function that checks if sensors are functioning, and runs an "and" function that tests if
     // all doors are closed and if the AC is on or off
 
     return (
-        bool.start_stop_sensor_state &&
-        bool.speed_sensor_state && 
-        bool.brake_sensor_state && 
-        bool.eng_temp_sensor_state && 
-        bool.battery_sensor_state
+        start_stop_sensor_status &&
+        speed_sensor_status && 
+        brake_sensor_status && 
+        eng_temp_sensor_status && 
+        battery_sensor_status
     ) && ( 
-        bool.hood_sensor_state || 
-        bool.trunk_sensor_state || 
-        bool.door_sensor_state || 
-        bool.seatbelt_sensor_state ||
-        bool.air_cond_sensor_state
+        hood_sensor_status || 
+        trunk_sensor_status || 
+        door_sensor_status || 
+        seatbelt_sensor_status ||
+        air_cond_sensor_status
     );
 }
