@@ -16,7 +16,7 @@
 
 char * buffer;
 
-void storeFileOnBuffer()
+void storeFileOnBuffer(void)
 {
     FILE * pFile;
     uint16_t newline_count = 0;
@@ -24,11 +24,11 @@ void storeFileOnBuffer()
     char file_char;
     size_t result;
 
-    // load the file
+    // Load the file
     pFile = fopen(VARS_FILE, "r");
     if (pFile == NULL) { fputs("File error", stderr); exit (1); }
 
-    // count newline characters and obtain file size
+    // Count newline characters and obtain file size
     do 
     {
         file_char = fgetc(pFile);
@@ -46,19 +46,19 @@ void storeFileOnBuffer()
     file_size--;
     rewind(pFile);
 
-    // allocate memory to contain the whole file:
+    // Allocate memory to contain the whole file:
     buffer = (char *) malloc(sizeof(char) * file_size);
     if (buffer == NULL) { fputs("Memory error", stderr); exit (2); }
 
-    // copy the file into the buffer:
+    // Copy the file into the buffer:
     result = fread(buffer, sizeof(char), file_size, pFile);
     if (result != file_size - newline_count) { fputs("Reading error", stderr); exit (3); }
 
-    // terminate
+    // Close file
     fclose(pFile);
 }
 
-void loadVarsFromBuffer()
+void loadVarsFromBuffer(void)
 {
     static uint32_t bytes_read = 0;
     uint8_t bytes_count;

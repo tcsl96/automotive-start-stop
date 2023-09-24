@@ -6,23 +6,24 @@
 #endif
 
 // Declaring the variables
+
 struct entry
 {
-    // miscellaneous variables
+    // Miscellaneous variables
     uint8_t button_pressed : 1;
     uint8_t engine_on : 1;
 
-    // safety variables
+    // Safety variables
     uint8_t hood_sensor_value : 1;
     uint8_t trunk_sensor_value : 1;
     uint8_t door_sensor_value : 1;
     uint8_t seatbelt_sensor_value : 1;
 
-    // hardware variables
+    // Hardware variables
     uint8_t start_stop_sensor_status : 1;
     uint8_t speed_sensor_status : 1;
     uint8_t brake_sensor_status : 1;
-    uint8_t eng_temp_sensor_status : 1;
+    uint8_t engine_temp_sensor_status : 1;
     uint8_t battery_sensor_status : 1;
     uint8_t hood_sensor_status : 1;
     uint8_t trunk_sensor_status : 1;
@@ -33,25 +34,25 @@ struct entry
 
 struct returned
 {
-    uint8_t start_stop_status : 1;
-    uint8_t turn_off_engine : 1;
-
+    uint8_t set_engine_status : 1;
     uint8_t hardware_status : 1;
     uint8_t system_status : 1;
+    uint8_t padding : 5;
 } Returned;
 
 struct miscellaneous
 {
     uint8_t elapsed_braking_time : 3;
-    uint8_t air_cond_speed : 2;
     uint8_t elapsed_turn_on_engine_time : 2;
+    uint8_t air_cond_speed : 2;
+    uint8_t padding : 1;
 } Misc;
 
-// dynamics variables
+// Dynamics variables
 float mpha;
 uint8_t lim_clutch_dis;
 uint16_t time;
 
-// power variables
+// Power variables
 float fc_tmp;
 float SOC;

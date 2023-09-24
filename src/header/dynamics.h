@@ -14,3 +14,4 @@
 
 uint8_t checkSpeed(float vehicle_speed_mph);
 uint8_t checkBrake(uint8_t is_braking, uint16_t time);
+uint8_t checkReactivationLatency(uint8_t system_status, uint8_t engine_status, uint16_t time);

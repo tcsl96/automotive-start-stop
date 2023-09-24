@@ -8,58 +8,11 @@
 // declaring the startStop function
 // all variables are designed for being forwarded from the simulink model
 
-uint8_t checkReactivationLatency(uint8_t system_status, uint8_t engine_status)
-{
-    static uint16_t turn_on_engine_start_time = 0;
-
-    if (system_status == 0 && engine_status == 0)
-    {
-        if (turn_on_engine_start_time == 0)
-        {
-            turn_on_engine_start_time = time;
-            Misc.elapsed_turn_on_engine_time = 0;
-        }
-        else
-        {
-            if (time - turn_on_engine_start_time > 2)
-            {
-                Misc.elapsed_turn_on_engine_time = 2;
-            }
-            else
-            {
-                Misc.elapsed_turn_on_engine_time = time - turn_on_engine_start_time;
-            }
-        }
-
-        if (Misc.elapsed_turn_on_engine_time == 2)
-        {
-            return 0;
-        }
-        else
-        {
-            return 0;
-        }
-    }
-    else
-    {
-        turn_on_engine_start_time = 0;
-        
-        if (system_status == 1)
-        {
-            return 1;
-        }
-        else
-        {
-            return 0;
-        }
-    }
-}
-
 uint8_t startStop(uint8_t button_pressed)
 {
     if (button_pressed == 0)
     {
-        return 0;
+        return 1;
     }
     else
     {
@@ -67,7 +20,7 @@ uint8_t startStop(uint8_t button_pressed)
             Entry.start_stop_sensor_status,
             Entry.speed_sensor_status,
             Entry.brake_sensor_status,
-            Entry.eng_temp_sensor_status,
+            Entry.engine_temp_sensor_status,
             Entry.battery_sensor_status,
             Entry.hood_sensor_status,
             Entry.trunk_sensor_status,
@@ -79,7 +32,7 @@ uint8_t startStop(uint8_t button_pressed)
 
     if (Returned.hardware_status == 0)
     {
-        return 0;
+        return 1;
     }
     else
     {
@@ -97,9 +50,9 @@ uint8_t startStop(uint8_t button_pressed)
             checkAirCond(Misc.air_cond_speed, SOC)
         );
 
-        Returned.system_status = checkReactivationLatency(Returned.system_status, Entry.engine_on);
+        Returned.system_status = checkReactivationLatency(Returned.system_status, Entry.engine_on, time);
 
-        return Returned.system_status;
+        return !Returned.system_status;
     }
 }
 
@@ -113,9 +66,9 @@ int main()
 
         // printf("%f %d %d %f %f\n", mpha, lim_clutch_dis, time, fc_tmp, SOC);
 
-        Returned.turn_off_engine = startStop(Entry.button_pressed);
+        Returned.set_engine_status = startStop(Entry.button_pressed);
 
-        // printf("%d\n", Returned.turn_off_engine);
+        // printf("%d\n", Returned.set_engine_status);
     }
 
     return 0;

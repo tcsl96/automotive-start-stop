@@ -2,7 +2,7 @@
 #include "src_unity/unity.c"
 #include "../src/header/safety.h"
 
-// test variables
+// Test variables
 
 uint8_t test_hood_sensor_value;
 uint8_t test_trunk_sensor_value;
@@ -11,12 +11,13 @@ uint8_t test_seatbelt_sensor_value;
 
 // Defining start functions
 
-void setUp() {};
-void tearDown() {};
+void setUp(void) {};
+void tearDown(void) {};
 
 // Defining test functions
 
-void testCheckSafety_true1() {
+void testCheckSafety_true1(void)
+{
     test_hood_sensor_value = 1;
     test_trunk_sensor_value = 1;
     test_door_sensor_value = 1;
@@ -29,7 +30,8 @@ void testCheckSafety_true1() {
     ) == 1));
 }
 
-void testCheckSafety_true2() {
+void testCheckSafety_true2(void)
+{
     test_hood_sensor_value = 1;
     test_trunk_sensor_value = 1;
     test_door_sensor_value = 1;
@@ -42,7 +44,8 @@ void testCheckSafety_true2() {
     ) == 1));
 }
 
-void testCheckSafety_true3() {
+void testCheckSafety_true3(void)
+{
     test_hood_sensor_value = 1;
     test_trunk_sensor_value = 1;
     test_door_sensor_value = 0;
@@ -55,7 +58,8 @@ void testCheckSafety_true3() {
     ) == 1));
 }
 
-void testCheckSafety_true4() {
+void testCheckSafety_true4(void)
+{
     test_hood_sensor_value = 1;
     test_trunk_sensor_value = 1;
     test_door_sensor_value = 0;
@@ -68,7 +72,8 @@ void testCheckSafety_true4() {
     ) == 1));
 }
 
-void testCheckSafety_true5() {
+void testCheckSafety_true5(void)
+{
     test_hood_sensor_value = 1;
     test_trunk_sensor_value = 0;
     test_door_sensor_value = 1;
@@ -81,7 +86,8 @@ void testCheckSafety_true5() {
     ) == 1));
 }
 
-void testCheckSafety_true6() {
+void testCheckSafety_true6(void)
+{
     test_hood_sensor_value = 1;
     test_trunk_sensor_value = 0;
     test_door_sensor_value = 1;
@@ -94,7 +100,8 @@ void testCheckSafety_true6() {
     ) == 1));
 }
 
-void testCheckSafety_true7() {
+void testCheckSafety_true7(void)
+{
     test_hood_sensor_value = 1;
     test_trunk_sensor_value = 0;
     test_door_sensor_value = 0;
@@ -107,7 +114,8 @@ void testCheckSafety_true7() {
     ) == 1));
 }
 
-void testCheckSafety_true8() {
+void testCheckSafety_true8(void)
+{
     test_hood_sensor_value = 1;
     test_trunk_sensor_value = 0;
     test_door_sensor_value = 0;
@@ -120,7 +128,8 @@ void testCheckSafety_true8() {
     ) == 1));
 }
 
-void testCheckSafety_true9() {
+void testCheckSafety_true9(void)
+{
     test_hood_sensor_value = 0;
     test_trunk_sensor_value = 1;
     test_door_sensor_value = 1;
@@ -133,7 +142,8 @@ void testCheckSafety_true9() {
     ) == 1));
 }
 
-void testCheckSafety_true10() {
+void testCheckSafety_true10(void)
+{
     test_hood_sensor_value = 0;
     test_trunk_sensor_value = 1;
     test_door_sensor_value = 1;
@@ -146,7 +156,8 @@ void testCheckSafety_true10() {
     ) == 1));
 }
 
-void testCheckSafety_true11() {
+void testCheckSafety_true11(void)
+{
     test_hood_sensor_value = 0;
     test_trunk_sensor_value = 1;
     test_door_sensor_value = 0;
@@ -159,7 +170,8 @@ void testCheckSafety_true11() {
     ) == 1));
 }
 
-void testCheckSafety_true12() {
+void testCheckSafety_true12(void)
+{
     test_hood_sensor_value = 0;
     test_trunk_sensor_value = 1;
     test_door_sensor_value = 0;
@@ -172,7 +184,8 @@ void testCheckSafety_true12() {
     ) == 1));
 }
 
-void testCheckSafety_true13() {
+void testCheckSafety_true13(void)
+{
     test_hood_sensor_value = 0;
     test_trunk_sensor_value = 0;
     test_door_sensor_value = 1;
@@ -185,7 +198,8 @@ void testCheckSafety_true13() {
     ) == 1));
 }
 
-void testCheckSafety_true14() {
+void testCheckSafety_true14(void)
+{
     test_hood_sensor_value = 0;
     test_trunk_sensor_value = 0;
     test_door_sensor_value = 1;
@@ -198,7 +212,8 @@ void testCheckSafety_true14() {
     ) == 1));
 }
 
-void testCheckSafety_true15() {
+void testCheckSafety_true15(void)
+{
     test_hood_sensor_value = 0;
     test_trunk_sensor_value = 0;
     test_door_sensor_value = 0;
@@ -211,7 +226,8 @@ void testCheckSafety_true15() {
     ) == 1));
 }
 
-void testCheckSafety_false() {
+void testCheckSafety_false(void)
+{
     test_hood_sensor_value = 0;
     test_trunk_sensor_value = 0;
     test_door_sensor_value = 0;
@@ -224,25 +240,24 @@ void testCheckSafety_false() {
     ) == 0));
 }
 
-// Main loop
-
-int main(void) {
-   UNITY_BEGIN();
-   RUN_TEST(testCheckSafety_true1);
-   RUN_TEST(testCheckSafety_true2);
-   RUN_TEST(testCheckSafety_true3);
-   RUN_TEST(testCheckSafety_true4);
-   RUN_TEST(testCheckSafety_true5);
-   RUN_TEST(testCheckSafety_true6);
-   RUN_TEST(testCheckSafety_true7);
-   RUN_TEST(testCheckSafety_true8);
-   RUN_TEST(testCheckSafety_true9);
-   RUN_TEST(testCheckSafety_true10);
-   RUN_TEST(testCheckSafety_true11);
-   RUN_TEST(testCheckSafety_true12);
-   RUN_TEST(testCheckSafety_true13);
-   RUN_TEST(testCheckSafety_true14);
-   RUN_TEST(testCheckSafety_true15);
-   RUN_TEST(testCheckSafety_false);
-   return UNITY_END();
+int main(void)
+{
+    UNITY_BEGIN();
+    RUN_TEST(testCheckSafety_true1);
+    RUN_TEST(testCheckSafety_true2);
+    RUN_TEST(testCheckSafety_true3);
+    RUN_TEST(testCheckSafety_true4);
+    RUN_TEST(testCheckSafety_true5);
+    RUN_TEST(testCheckSafety_true6);
+    RUN_TEST(testCheckSafety_true7);
+    RUN_TEST(testCheckSafety_true8);
+    RUN_TEST(testCheckSafety_true9);
+    RUN_TEST(testCheckSafety_true10);
+    RUN_TEST(testCheckSafety_true11);
+    RUN_TEST(testCheckSafety_true12);
+    RUN_TEST(testCheckSafety_true13);
+    RUN_TEST(testCheckSafety_true14);
+    RUN_TEST(testCheckSafety_true15);
+    RUN_TEST(testCheckSafety_false);
+    return UNITY_END();
 }

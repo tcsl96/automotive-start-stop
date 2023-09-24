@@ -5,7 +5,7 @@ uint8_t checkHardware(
     uint8_t start_stop_sensor_status,
     uint8_t speed_sensor_status,
     uint8_t brake_sensor_status,
-    uint8_t eng_temp_sensor_status,
+    uint8_t engine_temp_sensor_status,
     uint8_t battery_sensor_status,
     uint8_t hood_sensor_status,
     uint8_t trunk_sensor_status,
@@ -20,7 +20,7 @@ uint8_t checkHardware(
     brokenWarning(start_stop_sensor_status);
     brokenWarning(speed_sensor_status);
     brokenWarning(brake_sensor_status);
-    brokenWarning(eng_temp_sensor_status);
+    brokenWarning(engine_temp_sensor_status);
     brokenWarning(battery_sensor_status);
     brokenWarning(hood_sensor_status);
     brokenWarning(trunk_sensor_status);
@@ -35,7 +35,7 @@ uint8_t checkHardware(
         start_stop_sensor_status &&
         speed_sensor_status && 
         brake_sensor_status && 
-        eng_temp_sensor_status && 
+        engine_temp_sensor_status && 
         battery_sensor_status
     ) && ( 
         hood_sensor_status || 
