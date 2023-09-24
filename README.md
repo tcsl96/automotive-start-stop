@@ -292,4 +292,42 @@ Every Test Case is identified with the 'TC' tag followed by a letter that identi
 <p><b>Expected results:</b><p>Step 1. The warning status is saved on the sr_status variable.</p><p>Step 2. The brokenWarning() function is called with no problems.</p><p>Step 3. The test passes due to the returned value by the statusWarning function is equal to 0.</p></p>
 
 ## Wellbeing Test Suite
-TCWB001 - 
+### [TCWB001] Check Air Conditioner (False)
+<p><b>Pre-Conditions:</b> <p>Configured C environment with the Unity test framework.</p><p>Declared soc variable of type float.</p><p>Declared air_spd variable of type unsigned char.</p></p>
+<p><b>Steps:</b> <p>Step 1. Initialize the air_spd variable with the 3 value and the soc variable with the 0.5 value.</p><p>Step 2. Insert a call to the function checkAirCond() passing the air_spd and soc variables, respectively, as paramaters.</p><p>Step 3. Checks if the returned value from the checkAirCond function is equal to 0.</p></p>
+<p><b>Expected results:</b><p>Step 1. The air speed is saved on the air_spd variable and the state of charge is saved on the soc variable.</p><p>Step 2. The checkAirCond() function is called with no problems.</p><p>Step 3. The test passes due to the returned value by the checkAirCond function is equal to 0.</p></p>
+
+### [TCWB002] Check Air Conditioner (True)
+<p><b>Pre-Conditions:</b> <p>Configured C environment with the Unity test framework.</p><p>Declared soc variable of type float.</p><p>Declared air_spd variable of type unsigned char.</p></p>
+<p><b>Steps:</b> <p>Step 1. Initialize the air_spd variable with the 1 value and the soc variable with the 0.5 value.</p><p>Step 2. Insert a call to the function checkAirCond() passing the air_spd and soc variables, respectively, as paramaters.</p><p>Step 3. Checks if the returned value from the checkAirCond function is equal to 1.</p></p>
+<p><b>Expected results:</b><p>Step 1. The air speed is saved on the air_spd variable and the state of charge is saved on the soc variable.</p><p>Step 2. The checkAirCond() function is called with no problems.</p><p>Step 3. The test passes due to the returned value by the checkAirCond function is equal to 1.</p></p>
+
+### [TCWB003] Check Air Conditioner (True 2)
+<p><b>Pre-Conditions:</b> <p>Configured C environment with the Unity test framework.</p><p>Declared soc variable of type float.</p><p>Declared air_spd variable of type unsigned char.</p></p>
+<p><b>Steps:</b> <p>Step 1. Initialize the air_spd variable with the 3 value and the soc variable with the 0.9 value.</p><p>Step 2. Insert a call to the function checkAirCond() passing the air_spd and soc variables, respectively, as paramaters.</p><p>Step 3. Checks if the returned value from the checkAirCond function is equal to 1.</p></p>
+<p><b>Expected results:</b><p>Step 1. The air speed is saved on the air_spd variable and the state of charge is saved on the soc variable.</p><p>Step 2. The checkAirCond() function is called with no problems.</p><p>Step 3. The test passes due to the returned value by the checkAirCond function is equal to 1.</p></p>
+
+### [TCWB004] Check Air Conditioner (True 3)
+<p><b>Pre-Conditions:</b> <p>Configured C environment with the Unity test framework.</p><p>Declared soc variable of type float.</p><p>Declared air_spd variable of type unsigned char.</p></p>
+<p><b>Steps:</b> <p>Step 1. Initialize the air_spd variable with the 1 value and the soc variable with the 0.9 value.</p><p>Step 2. Insert a call to the function checkAirCond() passing the air_spd and soc variables, respectively, as paramaters.</p><p>Step 3. Checks if the returned value from the checkAirCond function is equal to 1.</p></p>
+<p><b>Expected results:</b><p>Step 1. The air speed is saved on the air_spd variable and the state of charge is saved on the soc variable.</p><p>Step 2. The checkAirCond() function is called with no problems.</p><p>Step 3. The test passes due to the returned value by the checkAirCond function is equal to 1.</p></p>
+
+### [TCWB005] Check Wellbeing (False)
+<p><b>Pre-Conditions:</b> <p>Configured C environment with the Unity test framework.</p><p>Declared soc variable of type float.</p><p>Declared air_spd variable of type unsigned char.</p></p>
+<p><b>Steps:</b> <p>Step 1. Initialize the air_spd variable with the 3 value and the soc variable with the 0.5 value.</p><p>Step 2. Insert a call to the function checkWellbeing() passing the air_spd and soc variables, respectively, as paramaters.</p><p>Step 3. Checks if the returned value from the checkAirCond function is equal to 0.</p></p>
+<p><b>Expected results:</b><p>Step 1. The air speed is saved on the air_spd variable and the state of charge is saved on the soc variable.</p><p>Step 2. The checkWellbeing() function is called with no problems.</p><p>Step 3. The test passes due to the returned value by the checkWellbeing function is equal to 0.</p></p>
+
+### [TCWB006] Check Wellbeing (True)
+<p><b>Pre-Conditions:</b> <p>Configured C environment with the Unity test framework.</p><p>Declared soc variable of type float.</p><p>Declared air_spd variable of type unsigned char.</p></p>
+<p><b>Steps:</b> <p>Step 1. Initialize the air_spd variable with the 1 value and the soc variable with the 0.5 value.</p><p>Step 2. Insert a call to the function checkWellbeing() passing the air_spd and soc variables, respectively, as paramaters.</p><p>Step 3. Checks if the returned value from the checkAirCond function is equal to 1.</p></p>
+<p><b>Expected results:</b><p>Step 1. The air speed is saved on the air_spd variable and the state of charge is saved on the soc variable.</p><p>Step 2. The checkWellbeing() function is called with no problems.</p><p>Step 3. The test passes due to the returned value by the checkWellbeing function is equal to 1.</p></p>
+
+### [TCWB007] Check Wellbeing (True 2)
+<p><b>Pre-Conditions:</b> <p>Configured C environment with the Unity test framework.</p><p>Declared soc variable of type float.</p><p>Declared air_spd variable of type unsigned char.</p></p>
+<p><b>Steps:</b> <p>Step 1. Initialize the air_spd variable with the 3 value and the soc variable with the 0.9 value.</p><p>Step 2. Insert a call to the function checkWellbeing() passing the air_spd and soc variables, respectively, as paramaters.</p><p>Step 3. Checks if the returned value from the checkAirCond function is equal to 1.</p></p>
+<p><b>Expected results:</b><p>Step 1. The air speed is saved on the air_spd variable and the state of charge is saved on the soc variable.</p><p>Step 2. The checkWellbeing() function is called with no problems.</p><p>Step 3. The test passes due to the returned value by the checkWellbeing function is equal to 1.</p></p>
+
+### [TCWB008] Check Wellbeing (True 3)
+<p><b>Pre-Conditions:</b> <p>Configured C environment with the Unity test framework.</p><p>Declared soc variable of type float.</p><p>Declared air_spd variable of type unsigned char.</p></p>
+<p><b>Steps:</b> <p>Step 1. Initialize the air_spd variable with the 1 value and the soc variable with the 0.9 value.</p><p>Step 2. Insert a call to the function checkWellbeing() passing the air_spd and soc variables, respectively, as paramaters.</p><p>Step 3. Checks if the returned value from the checkAirCond function is equal to 1.</p></p>
+<p><b>Expected results:</b><p>Step 1. The air speed is saved on the air_spd variable and the state of charge is saved on the soc variable.</p><p>Step 2. The checkWellbeing() function is called with no problems.</p><p>Step 3. The test passes due to the returned value by the checkWellbeing function is equal to 1.</p></p>
