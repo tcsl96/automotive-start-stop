@@ -271,6 +271,25 @@ Every Test Case is identified with the 'TC' tag followed by a letter that identi
 <p><b>Expected results:</b><p>Step 1. The variables of the safety sensors status are saved with the 0 value.</p><p>Step 2. The checkSafety() function is called with no problems.</p><p>Step 3. The test passes due to the returned value by the checkSafety function is equal to 0.</p></p>
 
 ## Warnings Test Suite
-TCW001 -
+### [TCW001] Status Check (True)
+<p><b>Pre-Conditions:</b> <p>Configured C environment with the Unity test framework.</p><p>Declared sr_status variable of type unsigned char.</p></p>
+<p><b>Steps:</b> <p>Step 1. Initialize the sr_status variable with the 1 value.</p><p>Step 2. Insert a call to the function statusWarning() passing the sr_status variable as a paramater.</p><p>Step 3. Checks if the returned value from the statusWarning function is equal to 1.</p></p>
+<p><b>Expected results:</b><p>Step 1. The warning status is saved on the sr_status variable.</p><p>Step 2. The statusWarning() function is called with no problems.</p><p>Step 3. The test passes due to the returned value by the statusWarning function is equal to 1.</p></p>
+
+### [TCW002] Status Check (False)
+<p><b>Pre-Conditions:</b> <p>Configured C environment with the Unity test framework.</p><p>Declared sr_status variable of type unsigned char.</p></p>
+<p><b>Steps:</b> <p>Step 1. Initialize the sr_status variable with the 0 value.</p><p>Step 2. Insert a call to the function statusWarning() passing the sr_status variable as a paramater.</p><p>Step 3. Checks if the returned value from the statusWarning function is equal to 0.</p></p>
+<p><b>Expected results:</b><p>Step 1. The warning status is saved on the sr_status variable.</p><p>Step 2. The statusWarning() function is called with no problems.</p><p>Step 3. The test passes due to the returned value by the statusWarning function is equal to 0.</p></p>
+
+### [TCW003] Broken Check (True)
+<p><b>Pre-Conditions:</b> <p>Configured C environment with the Unity test framework.</p><p>Declared sr_state variable of type unsigned char.</p></p>
+<p><b>Steps:</b> <p>Step 1. Initialize the sr_state variable with the 1 value.</p><p>Step 2. Insert a call to the function brokenWarning() passing the sr_state variable as a paramater.</p><p>Step 3. Checks if the returned value from the statusWarning function is equal to 1.</p></p>
+<p><b>Expected results:</b><p>Step 1. The warning status is saved on the sr_status variable.</p><p>Step 2. The brokenWarning() function is called with no problems.</p><p>Step 3. The test passes due to the returned value by the statusWarning function is equal to 1.</p></p>
+
+### [TCW004] Broken Check (False)
+<p><b>Pre-Conditions:</b> <p>Configured C environment with the Unity test framework.</p><p>Declared sr_state variable of type unsigned char.</p></p>
+<p><b>Steps:</b> <p>Step 1. Initialize the sr_state variable with the 0 value.</p><p>Step 2. Insert a call to the function brokenWarning() passing the sr_state variable as a paramater.</p><p>Step 3. Checks if the returned value from the statusWarning function is equal to 0.</p></p>
+<p><b>Expected results:</b><p>Step 1. The warning status is saved on the sr_status variable.</p><p>Step 2. The brokenWarning() function is called with no problems.</p><p>Step 3. The test passes due to the returned value by the statusWarning function is equal to 0.</p></p>
+
 ## Wellbeing Test Suite
 TCWB001 - 
