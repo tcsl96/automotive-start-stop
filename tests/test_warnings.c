@@ -1,11 +1,11 @@
-#include "../src/entry.c"
+#include <stdint.h>
 #include "src_unity/unity.c"
 #include "../src/header/warnings.h"
 
 // test variables
 
-unsigned char sr_state;
-unsigned char sr_status;
+uint8_t test_sensor_value;
+uint8_t test_sensor_status;
 
 // Defining start functions
 
@@ -14,33 +14,33 @@ void tearDown() {};
 
 // Defining test functions
 
-void testWarningsStatusCheckTrue() {
-    sr_status = 1;
-    TEST_ASSERT((statusWarning(sr_status) == 1));
+void testSafetyWarning_true() {
+    test_sensor_value = 1;
+    TEST_ASSERT((safetyWarning(test_sensor_value) == 1));
 }
 
-void testWarningsStatusCheckFalse() {
-    sr_status = 0;
-    TEST_ASSERT((statusWarning(sr_status) == 0));
+void testSafetyWarning_false() {
+    test_sensor_value = 0;
+    TEST_ASSERT((safetyWarning(test_sensor_value) == 0));
 }
 
-void testWarningsBrokenCheckTrue() {
-    sr_state = 1;
-    TEST_ASSERT((brokenWarning(sr_state) == 1));
+void testBrokenWarning_true() {
+    test_sensor_status = 1;
+    TEST_ASSERT((brokenWarning(test_sensor_status) == 1));
 }
 
-void testWarningsBrokenCheckFalse() {
-    sr_state = 0;
-    TEST_ASSERT((brokenWarning(sr_state) == 0));
+void testBrokenWarningfalse() {
+    test_sensor_status = 0;
+    TEST_ASSERT((brokenWarning(test_sensor_status) == 0));
 }
 
 // Main loop
 
 int main(void) {
    UNITY_BEGIN();
-   RUN_TEST(testWarningsStatusCheckTrue);
-   RUN_TEST(testWarningsStatusCheckFalse);
-   RUN_TEST(testWarningsBrokenCheckTrue);
-   RUN_TEST(testWarningsBrokenCheckFalse);
+   RUN_TEST(testSafetyWarning_true);
+   RUN_TEST(testSafetyWarning_false);
+   RUN_TEST(testBrokenWarning_true);
+   RUN_TEST(testBrokenWarningfalse);
    return UNITY_END();
 }

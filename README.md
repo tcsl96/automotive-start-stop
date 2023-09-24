@@ -28,22 +28,22 @@ Every Test Case is identified with the 'TC' tag followed by a letter that identi
 <p><b>Expected results:</b><p>Step 1. The speed value is saved on the spd variable.</p><p>Step 2. The CheckSpeed function is called with no problems.</p><p>Step 3. The test passes due to the returned value by the CheckSpeed function being equals to 0.</p></p>
 
 ### [TCD003] Check Brake (True)
-<p><b>Pre-Conditions:</b> <p>Configured C environment with the Unity test framework.</p><p>Declared time_test variable of type short int.</p><p>Declared t variable of type unsigned char.</p></p>
+<p><b>Pre-Conditions:</b> <p>Configured C environment with the Unity test framework.</p><p>Declared time_test variable of type uint16_t.</p><p>Declared t variable of type uint8_t.</p></p>
 <p><b>Steps:</b> <p>Step 1. Initialize the time_test variable with the 0 value.</p><p>Step 2. Insert a call to the function checkBrake() passing the t parameter and the time_test respectively.</p><p>Step 3. Checks if the returned value from the checkBrake function is equals to 0.</p></p>
 <p><b>Expected results:</b><p>Step 1. The time in the beginning of the test execution is saved on the time_test variable.</p><p>Step 2. The CheckBrake function is called with no problems.</p><p>Step 3. The test passes due to the returned value by the checkBrake function being equals to 0.</p></p>
 
 ### [TCD004] Check Brake (True 2)
-<p><b>Pre-Conditions:</b> <p>Configured C environment with the Unity test framework.</p><p>Declared time_test variable of type short int.</p><p>Declared t variable of type unsigned char.</p></p>
+<p><b>Pre-Conditions:</b> <p>Configured C environment with the Unity test framework.</p><p>Declared time_test variable of type uint16_t.</p><p>Declared t variable of type uint8_t.</p></p>
 <p><b>Steps:</b> <p>Step 1. Initialize the time_test variable with the 10 value.</p><p>Step 2. Insert a call to the function checkBrake() passing the t parameter and the time_test respectively.</p><p>Step 3. Checks if the returned value from the checkBrake function is equals to 0.</p></p>
 <p><b>Expected results:</b><p>Step 1. The time in the beginning of the test execution is saved on the time_test variable.</p><p>Step 2. The CheckBrake function is called with no problems.</p><p>Step 3. The test passes due to the returned value by the checkBrake function being equals to 0.</p></p>
 
 ### [TCD005] Check Brake (False)
-<p><b>Pre-Conditions:</b> <p>Configured C environment with the Unity test framework.</p><p>Declared time_test variable of type short int.</p><p>Declared f variable of type unsigned char.</p></p>
+<p><b>Pre-Conditions:</b> <p>Configured C environment with the Unity test framework.</p><p>Declared time_test variable of type uint16_t.</p><p>Declared f variable of type uint8_t.</p></p>
 <p><b>Steps:</b> <p>Step 1. Initialize the time_test variable with the 0 value.</p><p>Step 2. Insert a call to the function checkBrake() passing the f parameter and the time_test respectively.</p><p>Step 3. Checks if the returned value from the checkBrake function is equals to 0.</p></p>
 <p><b>Expected results:</b><p>Step 1. The time in the beginning of the test execution is saved on the time_test variable.</p><p>Step 2. The CheckBrake function is called with no problems.</p><p>Step 3. The test passes due to the returned value by the checkBrake function being equals to 0.</p></p>
 
 ### [TCD006] Check Brake (False 2)
-<p><b>Pre-Conditions:</b> <p>Configured C environment with the Unity test framework.</p><p>Declared time_test variable of type short int.</p><p>Declared f variable of type unsigned char.</p></p>
+<p><b>Pre-Conditions:</b> <p>Configured C environment with the Unity test framework.</p><p>Declared time_test variable of type uint16_t.</p><p>Declared f variable of type uint8_t.</p></p>
 <p><b>Steps:</b> <p>Step 1. Initialize the time_test variable with the 10 value.</p><p>Step 2. Insert a call to the function checkBrake() passing the f parameter and the time_test respectively.</p><p>Step 3. Checks if the returned value from the checkBrake function is equals to 0.</p></p>
 <p><b>Expected results:</b><p>Step 1. The time in the beginning of the test execution is saved on the time_test variable.</p><p>Step 2. The CheckBrake function is called with no problems.</p><p>Step 3. The test passes due to the returned value by the checkBrake function being equals to 0.</p></p>
   

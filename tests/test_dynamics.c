@@ -1,12 +1,12 @@
-#include "../src/entry.c"
+#include <stdint.h>
 #include "src_unity/unity.c"
 #include "../src/header/dynamics.h"
 
 // test variables
 
-float spd;
-short int time_test;
-unsigned char t, f;
+float test_speed;
+uint16_t test_time;
+uint8_t test_is_braking;
 
 // Defining start functions
 
@@ -15,47 +15,56 @@ void tearDown() {};
 
 // Defining test functions
 
-void testDynamicSpeedCheckTrue() {
-    spd = 2.123;
-    TEST_ASSERT((checkSpeed(spd) == 1));
+void testCheckSpeed_true()
+{
+    test_speed = 2.123;
+    TEST_ASSERT((checkSpeed(test_speed) == 1));
 }
 
-void testDynamicSpeedCheckFalse() {
-    spd = 6.123;
-    TEST_ASSERT((checkSpeed(spd) == 0));
+void testCheckSpeed_false()
+{
+    test_speed = 6.123;
+    TEST_ASSERT((checkSpeed(test_speed) == 0));
 }
 
-void testDynamicsCheckBrakeTrue() {
-    time_test = 0;
-    TEST_ASSERT((checkBrake(t, time_test) == 0));
+void testCheckBrake_true()
+{
+    test_is_braking = 1;
+    test_time = 0;
+    TEST_ASSERT((checkBrake(test_is_braking, test_time) == 0));
 }
 
-void testDynamicsCheckBrakeTrue2() {
-    time_test = 10;
-    TEST_ASSERT((checkBrake(t, time_test) == 0));
+void testCheckBrake_true2()
+{
+    test_is_braking = 1;
+    test_time = 10;
+    TEST_ASSERT((checkBrake(test_is_braking, test_time) == 0));
 }
 
-void testDynamicsCheckBrakeFalse() {
-    time_test = 0;
-    TEST_ASSERT(checkBrake(f, time_test) == 0);
+void testCheckBrake_false()
+{
+    test_is_braking = 0;
+    test_time = 0;
+    TEST_ASSERT(checkBrake(test_is_braking, test_time) == 0);
 }
 
-void testDynamicsCheckBrakeFalse2() {
-    time_test = 10;
-    TEST_ASSERT(checkBrake(f, time_test) == 0);
+void testCheckBrake_false2()
+{
+    test_is_braking = 0;
+    test_time = 10;
+    TEST_ASSERT(checkBrake(test_is_braking, test_time) == 0);
 }
 
 // Main loop
 
-int main(void) {
-   t = 1;
-   f = 0;
-   UNITY_BEGIN();
-   RUN_TEST(testDynamicSpeedCheckTrue);
-   RUN_TEST(testDynamicSpeedCheckFalse);
-   RUN_TEST(testDynamicsCheckBrakeTrue);
-   RUN_TEST(testDynamicsCheckBrakeTrue2);
-   RUN_TEST(testDynamicsCheckBrakeFalse);
-   RUN_TEST(testDynamicsCheckBrakeFalse2);
-   return UNITY_END();
+int main(void)
+{
+    UNITY_BEGIN();
+    RUN_TEST(testCheckSpeed_true);
+    RUN_TEST(testCheckSpeed_false);
+    RUN_TEST(testCheckBrake_true);
+    RUN_TEST(testCheckBrake_true2);
+    RUN_TEST(testCheckBrake_false);
+    RUN_TEST(testCheckBrake_false2);
+    return UNITY_END();
 }
