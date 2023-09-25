@@ -12,12 +12,14 @@ uint8_t checkSpeed(float vehicle_speed_mph)
 
 uint8_t checkBrake(uint8_t is_braking, uint16_t time)
 {
-    static uint16_t braking_start_time = 0;
+    static uint8_t is_counting_time = 0;
+    static uint16_t braking_start_time;
 
     if (is_braking == 1)
     {
-        if (braking_start_time == 0)
+        if (is_counting_time == 0)
         {
+            is_counting_time = 1;
             braking_start_time = time;
             Misc.elapsed_braking_time = 0;
         }
@@ -44,19 +46,22 @@ uint8_t checkBrake(uint8_t is_braking, uint16_t time)
     }
     else
     {
-        braking_start_time = 0;
+        is_counting_time = 0;
+        
         return 0;
     }
 }
 
-uint8_t checkReactivationLatency(uint8_t system_status, uint8_t engine_status, uint16_t time)
+uint8_t checkSystemLatency(uint8_t system_status, uint8_t engine_status, uint16_t time)
 {
-    static uint16_t turn_on_engine_start_time = 0;
+    static uint8_t is_counting_time = 0;
+    static uint16_t turn_on_engine_start_time;
 
     if (system_status == 0 && engine_status == 0)
     {
-        if (turn_on_engine_start_time == 0)
+        if (is_counting_time == 0)
         {
+            is_counting_time = 1;
             turn_on_engine_start_time = time;
             Misc.elapsed_turn_on_engine_time = 0;
         }
@@ -74,7 +79,7 @@ uint8_t checkReactivationLatency(uint8_t system_status, uint8_t engine_status, u
 
         if (Misc.elapsed_turn_on_engine_time == 2)
         {
-            return 0;
+            return 1;
         }
         else
         {
@@ -83,8 +88,8 @@ uint8_t checkReactivationLatency(uint8_t system_status, uint8_t engine_status, u
     }
     else
     {
-        turn_on_engine_start_time = 0;
+        is_counting_time = 0;
         
-        return system_status;
+        return 0;
     }
 }

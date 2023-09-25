@@ -43,61 +43,12 @@ Every Test Case is identified with the 'TC' tag followed by a letter that identi
 <p>Step 2. The CheckSpeed function is called with no problems.</p>
 <p>Step 3. The test passes due to the returned value by the CheckSpeed function being equals to 0.</p>
 
-### [TCD003] Check Brake (True 1)
-<p><b>Pre-Conditions:</b></p>
-<p>Configured C environment with the Unity test framework.</p>
-<p>Declared test_is_braking variable of type uint8_t.</p>
-<p>Declared test_time variable of type uint16_t.</p>
-<p><b>Steps:</b></p>
-<p>Step 1. Initialize the test_time variable with the 0 value.</p>
-<p>Step 2. Insert a call to the function checkBrake() passing the t parameter and the test_time respectively.</p>
-<p>Step 3. Checks if the returned value from the checkBrake function is equals to 0.</p>
-<p><b>Expected results:</b></p>
-<p>Step 1. The initialized time value is saved on the test_time variable.</p>
-<p>Step 2. The CheckBrake function is called with no problems.</p>
-<p>Step 3. The test passes due to the returned value by the checkBrake function being equals to 0.</p>
-
-### [TCD004] Check Brake (True 2)
-<p><b>Pre-Conditions:</b></p>
-<p>Configured C environment with the Unity test framework.</p>
-<p>Declared test_is_braking variable of type uint8_t.</p>
-<p>Declared test_time variable of type uint16_t.</p>
-<p><b>Steps:</b></p>
-<p>Step 1. Initialize the test_time variable with the 10 value.</p>
-<p>Step 2. Insert a call to the function checkBrake() passing the t parameter and the test_time respectively.</p>
-<p>Step 3. Checks if the returned value from the checkBrake function is equals to 0.</p>
-<p><b>Expected results:</b></p>
-<p>Step 1. The initialized time value is saved on the test_time variable.</p>
-<p>Step 2. The CheckBrake function is called with no problems.</p>
-<p>Step 3. The test passes due to the returned value by the checkBrake function being equals to 0.</p>
-
-### [TCD005] Check Brake (False 1)
-<p><b>Pre-Conditions:</b></p>
-<p>Configured C environment with the Unity test framework.</p>
-<p>Declared test_is_braking variable of type uint8_t.</p>
-<p>Declared test_time variable of type uint16_t.</p>
-<p><b>Steps:</b></p>
-<p>Step 1. Initialize the test_time variable with the 0 value.</p>
-<p>Step 2. Insert a call to the function checkBrake() passing the f parameter and the test_time respectively.</p>
-<p>Step 3. Checks if the returned value from the checkBrake function is equals to 0.</p>
-<p><b>Expected results:</b></p>
-<p>Step 1. The initialized time value is saved on the test_time variable.</p>
-<p>Step 2. The CheckBrake function is called with no problems.</p>
-<p>Step 3. The test passes due to the returned value by the checkBrake function being equals to 0.</p>
-
-### [TCD006] Check Brake (False 2)
-<p><b>Pre-Conditions:</b></p>
-<p>Configured C environment with the Unity test framework.</p>
-<p>Declared test_is_braking variable of type uint8_t.</p>
-<p>Declared test_time variable of type uint16_t.</p>
-<p><b>Steps:</b></p>
-<p>Step 1. Initialize the test_time variable with the 10 value.</p>
-<p>Step 2. Insert a call to the function checkBrake() passing the f parameter and the test_time respectively.</p>
-<p>Step 3. Checks if the returned value from the checkBrake function is equals to 0.</p>
-<p><b>Expected results:</b></p>
-<p>Step 1. The initialized time value is saved on the test_time variable.</p>
-<p>Step 2. The CheckBrake function is called with no problems.</p>
-<p>Step 3. The test passes due to the returned value by the checkBrake function being equals to 0.</p>
+### [TCD003] Check Brake (True)
+### [TCD004] Check Brake (False)
+### [TCD005] Check System Latency (True)
+### [TCD006] Check System Latency (False 1)
+### [TCD007] Check System Latency (False 2)
+### [TCD008] Check System Latency (False 3)
   
 ## Hardware Test Suite
 ### [TCH001] Check Hardware (True 1)

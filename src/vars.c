@@ -37,7 +37,8 @@ struct returned
     uint8_t set_engine_status : 1;
     uint8_t hardware_status : 1;
     uint8_t system_status : 1;
-    uint8_t padding : 5;
+    uint8_t latency_status : 1;
+    uint8_t padding : 4;
 } Returned;
 
 struct miscellaneous
