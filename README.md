@@ -44,12 +44,103 @@ Every Test Case is identified with the 'TC' tag followed by a letter that identi
 <p>Step 3. The test passes due to the returned value by the CheckSpeed function being equals to 0.</p>
 
 ### [TCD003] Check Brake (True)
+<p><b>Pre-Conditions:</b></p>
+<p>Configured C environment with the Unity test framework.</p>
+<p>Declared test_time variable of type uint16_t.</p>
+<p><b>Steps:</b></p>
+<p>Step 1. Initialize the test_is_braking variable with the 1 value.</p>
+<p>Step 2. Create two variables of type uint8_t: test_brake_status, expected.</p>
+<p>Step 3. Create a for loop that executes ten times based on the test_time variable starting from 0. Each loop must verify if the test_time is less than 5, if it is, then expected receives the 0 value if it's not expected receives 1.</p>
+<p>Step 4. Insert a call to the function checkBrake() passing the test_is_braking, test_time as parameters and save the return of this function on the test_brake_status variable.</p>
+<p>Step 5. Check if the test_brake_status is equal to the value saved on the expected variable (1).</p>
+<p><b>Expected results:</b></p>
+<p>Step 1. The test_is_braking variable saves the 1 value.</p>
+<p>Step 2. The two variables test_brake_status and expected are created with no problems.</p>
+<p>Step 3. The for loop is created and runs all the times it is supposed to run with no problems.</p>
+<p>Step 4. The checkBrake function is called with no problems.</p>
+<p>Step 5. The test passes due to the value on the test_brake_status variable that receives the returned value from the checkBrake function is equal to the value saved on the expected variable which is 1.</p>
+
 ### [TCD004] Check Brake (False)
+<p><b>Pre-Conditions:</b></p>
+<p>Configured C environment with the Unity test framework.</p>
+<p>Declared test_time variable of type uint16_t.</p>
+<p><b>Steps:</b></p>
+<p>Step 1. Initialize the test_is_braking variable with the 0 value and the test_time variable with the 10 value.</p>
+<p>Step 2. Insert a call to the function checkBrake() passing test_is_braking and test_time as parameters.</p>
+<p>Step 3. Checks if the returned value from the checkBrake function is equal to 0. </p>
+<p><b>Expected results:</b></p>
+<p>Step 1. The test_is_braking and test_time variables are saved with their detailed values.</p>
+<p>Step 2. The checkBrake function is called with no problems.</p>
+<p>Step 3. The test passes due to returned value by the checkBrake function being equal to 0.</p>
+
 ### [TCD005] Check System Latency (True)
+<p><b>Pre-Conditions:</b></p>
+<p>Configured C environment with the Unity test framework.</p>
+<p>Declared test_time variable of type uint16_t.</p>
+<p><b>Steps:</b></p>
+<p>Step 1. Create 4 variables of type uint8_t:</p>
+<ul>
+<li>test_system_status</li>
+<li>test_engine_on</li>
+<li>test_latency_status</li>
+<li>expected</li>
+</ul>
+<p>Step 2. Initialize the test_system_status and test_engine_on with the 0 value.</p>
+<p>Step 3. Create a for loop that executes five times based on the test_time variable starting from 0. Each loop must verify if the test_time is less than 2, if it is, then expected receives the 0 value if it's not expected receives 1.</p>
+<p>Step 4. Insert a call to the checkSystemLatency() function passing test_system_status, test_engine_on and test_time as parameters and save the returned value by the function on the test_latency_status variable.</p>
+<p>Step 5. Checks if the value saved on test_latency_status is equals to the value saved on the expected variable.
+<p><b>Expected results:</b></p>
+<p>Step 1. The 4 variables are created without problems.</p>
+<p>Step 2. The values to test_system_status and test_engine_on are saved.</p>
+<p>Step 3. The for loop is created and runs all the times it is supposed to run with no problems.</p>
+<p>Step 4. The checkSystemLatency function is called with no problems.</p>
+<p>Step 5. The test passes due to the value on the test_latency_status variable is equal to the value saved on the expected variable which is 1.</p>
+
 ### [TCD006] Check System Latency (False 1)
+<p><b>Pre-Conditions:</b></p>
+<p>Configured C environment with the Unity test framework.</p>
+<p>Declared test_time variable of type uint16_t.</p>
+<p><b>Steps:</b></p>
+<p>Step 1. Create two variables of type uint8_t: test_system_status and test_engine_on.</p>
+<p>Step 2. Assign the 0 value to the test_system_status, 1 to the test_engine_on and 10 to the test_time variable.</p>
+<p>Step 3. Insert a call to the function checkSystemLatency() passing the test_system_status, test_engine_on and test_time variables as parameters.</p>
+<p>Step 4. Checks if the returned value from the CheckSystemLatency function is equal to 0.</p>
+<p><b>Expected results:</b></p>
+<p>Step 1. The variables test_system_status and test_engine_on are created with no problems.</p>
+<p>Step 2. The values are saved on their respectives variables.</p>
+<p>Step 3. The checkSystemLatency function is called with no problems.</p>
+<p>Step 4. The test passes due to the returned value from the checkSystemLatency function is equal to 0.</p>
+
 ### [TCD007] Check System Latency (False 2)
+<p><b>Pre-Conditions:</b></p>
+<p>Configured C environment with the Unity test framework.</p>
+<p>Declared test_time variable of type uint16_t.</p>
+<p><b>Steps:</b></p>
+<p>Step 1. Create two variables of type uint8_t: test_system_status and test_engine_on.</p>
+<p>Step 2. Assign the 1 value to the test_system_status, 0 to the test_engine_on and 10 to the test_time variable.</p>
+<p>Step 3. Insert a call to the function checkSystemLatency() passing the test_system_status, test_engine_on and test_time variables as parameters.</p>
+<p>Step 4. Checks if the returned value from the CheckSystemLatency function is equal to 0.</p>
+<p><b>Expected results:</b></p>
+<p>Step 1. The variables test_system_status and test_engine_on are created with no problems.</p>
+<p>Step 2. The values are saved on their respectives variables.</p>
+<p>Step 3. The checkSystemLatency function is called with no problems.</p>
+<p>Step 4. The test passes due to the returned value from the checkSystemLatency function is equal to 0.</p>
+
 ### [TCD008] Check System Latency (False 3)
-  
+<p><b>Pre-Conditions:</b></p>
+<p>Configured C environment with the Unity test framework.</p>
+<p>Declared test_time variable of type uint16_t.</p>
+<p><b>Steps:</b></p>
+<p>Step 1. Create two variables of type uint8_t: test_system_status and test_engine_on.</p>
+<p>Step 2. Assign the 1 value to the test_system_status, 1 to the test_engine_on and 10 to the test_time variable.</p>
+<p>Step 3. Insert a call to the function checkSystemLatency() passing the test_system_status, test_engine_on and test_time variables as parameters.</p>
+<p>Step 4. Checks if the returned value from the CheckSystemLatency function is equal to 0.</p>
+<p><b>Expected results:</b></p>
+<p>Step 1. The variables test_system_status and test_engine_on are created with no problems.</p>
+<p>Step 2. The values are saved on their respectives variables.</p>
+<p>Step 3. The checkSystemLatency function is called with no problems.</p>
+<p>Step 4. The test passes due to the returned value from the checkSystemLatency function is equal to 0.</p>
+
 ## Hardware Test Suite
 ### [TCH001] Check Hardware (True 1)
 <p><b>Pre-Conditions:</b></p>
