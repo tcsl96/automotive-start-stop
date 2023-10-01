@@ -4,8 +4,8 @@
 
 // Test variables
 
-float test_fc_tmp;
-float test_SOC;
+fixed7_9 test_engine_internal_temp;
+fixed1_15 test_state_of_charge;
 
 // Defining start functions
 
@@ -16,26 +16,30 @@ void tearDown(void) {};
 
 void testCheckEngineTemp_true(void)
 {
-    test_fc_tmp = 100;
-    TEST_ASSERT((checkEngineTemp(test_fc_tmp) == 1));
+    test_engine_internal_temp = 100.0f * (1u << FIXED7_9_FRAC);
+
+    TEST_ASSERT(checkEngineTemp(test_engine_internal_temp, FIXED7_9_FRAC) == 1);
 }
 
 void testCheckEngineTemp_false(void)
 {
-    test_fc_tmp = 50;
-    TEST_ASSERT((checkEngineTemp(test_fc_tmp) == 0));
+    test_engine_internal_temp = 50.0f * (1u << FIXED7_9_FRAC);
+
+    TEST_ASSERT(checkEngineTemp(test_engine_internal_temp, FIXED7_9_FRAC) == 0);
 }
 
 void testCheckBattery_true(void)
 {
-    test_SOC = 0.7;
-    TEST_ASSERT((checkBattery(test_SOC) == 1));
+    test_state_of_charge = 0.7f * (1u << FIXED1_15_FRAC);
+
+    TEST_ASSERT(checkBattery(test_state_of_charge, FIXED1_15_FRAC) == 1);
 }
 
 void testCheckBattery_false(void)
 {
-    test_SOC = 0.3;
-    TEST_ASSERT((checkBattery(test_SOC) == 0));
+    test_state_of_charge = 0.3f * (1u << FIXED1_15_FRAC);
+
+    TEST_ASSERT(checkBattery(test_state_of_charge, FIXED1_15_FRAC) == 0);
 }
 
 int main(void)

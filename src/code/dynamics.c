@@ -1,83 +1,94 @@
-uint8_t checkSpeed(float vehicle_speed_mph)
+// Checks if the car speed is lower than 5 kph.
+// If yes, activate the Start Stop.
+
+uint8_t checkSpeed(fixed7_9 vehicle_speed_mph, uint8_t fractional_bits)
 {
-    if (vehicle_speed_mph * 1.6095 < 5)
+    if (vehicle_speed_mph * 1.6095f < (5u << fractional_bits))
     {
-        return 1;
+        return START_STOP_ON;
     }
     else
     {
-        return 0;
+        return START_STOP_OFF;
     }
 }
 
-uint8_t checkBrake(uint8_t is_braking, uint16_t time)
-{
-    static uint8_t is_counting_time = 0;
-    static uint16_t braking_start_time;
+// Checks if the driver is braking for at least 5 seconds.
+// If yes, activate the Start Stop.
 
-    if (is_braking == 1)
+uint8_t checkBrake(uint8_t braking_status, uint16_t time)
+{
+    static uint8_t braking_timer_status = TIMER_OFF;
+    static uint16_t braking_start_time;
+    static uint8_t braking_elapsed_time;
+
+    if (braking_status == 1)
     {
-        if (is_counting_time == 0)
+        if (braking_timer_status == TIMER_OFF)
         {
-            is_counting_time = 1;
+            braking_timer_status = TIMER_ON;
             braking_start_time = time;
-            Misc.elapsed_braking_time = 0;
+            braking_elapsed_time = 0;
         }
         else
         {
             if (time - braking_start_time > 5)
             {
-                Misc.elapsed_braking_time = 5;
+                braking_elapsed_time = 5;
             }
             else
             {
-                Misc.elapsed_braking_time = time - braking_start_time;
+                braking_elapsed_time = time - braking_start_time;
             }
         }
 
-        if (Misc.elapsed_braking_time == 5)
+        if (braking_elapsed_time == 5)
         {
-            return 1;
+            return START_STOP_ON;
         }
         else
         {
-            return 0;
+            return START_STOP_OFF;
         }
     }
     else
     {
-        is_counting_time = 0;
+        braking_timer_status = TIMER_OFF;
         
-        return 0;
+        return START_STOP_OFF;
     }
 }
 
-uint8_t checkSystemLatency(uint8_t system_status, uint8_t engine_status, uint16_t time)
-{
-    static uint8_t is_counting_time = 0;
-    static uint16_t turn_on_engine_start_time;
+// Checks if the engine lasts 2 seconds to restart when the Start Stop is off.
+// If yes, turn off permanently the Start Stop.
 
-    if (system_status == 0 && engine_status == 0)
+uint8_t checkSystemLatency(uint8_t start_stop_status, uint8_t engine_status, uint16_t time)
+{
+    static uint8_t restart_engine_timer_status = TIMER_OFF;
+    static uint16_t restart_engine_start_time;
+    static uint8_t restart_engine_elapsed_time;
+
+    if (start_stop_status == 0 && engine_status == 0)
     {
-        if (is_counting_time == 0)
+        if (restart_engine_timer_status == TIMER_OFF)
         {
-            is_counting_time = 1;
-            turn_on_engine_start_time = time;
-            Misc.elapsed_turn_on_engine_time = 0;
+            restart_engine_timer_status = TIMER_ON;
+            restart_engine_start_time = time;
+            restart_engine_elapsed_time = 0;
         }
         else
         {
-            if (time - turn_on_engine_start_time > 2)
+            if (time - restart_engine_start_time > 2)
             {
-                Misc.elapsed_turn_on_engine_time = 2;
+                restart_engine_elapsed_time = 2;
             }
             else
             {
-                Misc.elapsed_turn_on_engine_time = time - turn_on_engine_start_time;
+                restart_engine_elapsed_time = time - restart_engine_start_time;
             }
         }
 
-        if (Misc.elapsed_turn_on_engine_time == 2)
+        if (restart_engine_elapsed_time == 2)
         {
             return 1;
         }
@@ -88,7 +99,7 @@ uint8_t checkSystemLatency(uint8_t system_status, uint8_t engine_status, uint16_
     }
     else
     {
-        is_counting_time = 0;
+        restart_engine_timer_status = TIMER_OFF;
         
         return 0;
     }

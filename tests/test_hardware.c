@@ -34,6 +34,7 @@ void testCheckHardware_true1(void)
     test_door_sensor_status = 1;
     test_seatbelt_sensor_status = 1;
     test_air_cond_sensor_status = 1;
+    
     TEST_ASSERT(checkHardware(
         test_start_stop_sensor_status,
         test_speed_sensor_status,
@@ -60,6 +61,7 @@ void testCheckHardware_true2(void)
     test_door_sensor_status = 0;
     test_seatbelt_sensor_status = 0;
     test_air_cond_sensor_status = 0;
+    
     TEST_ASSERT(checkHardware(
         test_start_stop_sensor_status,
         test_speed_sensor_status,
@@ -86,6 +88,7 @@ void testCheckHardware_true3(void)
     test_door_sensor_status = 0;
     test_seatbelt_sensor_status = 0;
     test_air_cond_sensor_status = 0;
+    
     TEST_ASSERT(checkHardware(
         test_start_stop_sensor_status,
         test_speed_sensor_status,
@@ -112,6 +115,7 @@ void testCheckHardware_true4(void)
     test_door_sensor_status = 1;
     test_seatbelt_sensor_status = 0;
     test_air_cond_sensor_status = 0;
+    
     TEST_ASSERT(checkHardware(
         test_start_stop_sensor_status,
         test_speed_sensor_status,
@@ -138,6 +142,7 @@ void testCheckHardware_true5(void)
     test_door_sensor_status = 0;
     test_seatbelt_sensor_status = 1;
     test_air_cond_sensor_status = 0;
+    
     TEST_ASSERT(checkHardware(
         test_start_stop_sensor_status,
         test_speed_sensor_status,
@@ -164,6 +169,7 @@ void testCheckHardware_true6(void)
     test_door_sensor_status = 0;
     test_seatbelt_sensor_status = 0;
     test_air_cond_sensor_status = 1;
+    
     TEST_ASSERT(checkHardware(
         test_start_stop_sensor_status,
         test_speed_sensor_status,
@@ -190,6 +196,7 @@ void testCheckHardware_false1(void)
     test_door_sensor_status = 1;
     test_seatbelt_sensor_status = 1;
     test_air_cond_sensor_status = 1;
+    
     TEST_ASSERT(checkHardware(
         test_start_stop_sensor_status,
         test_speed_sensor_status,
@@ -216,6 +223,7 @@ void testCheckHardware_false2(void)
     test_door_sensor_status = 1;
     test_seatbelt_sensor_status = 1;
     test_air_cond_sensor_status = 1;
+    
     TEST_ASSERT(checkHardware(
         test_start_stop_sensor_status,
         test_speed_sensor_status,
@@ -242,6 +250,7 @@ void testCheckHardware_false3(void)
     test_door_sensor_status = 1;
     test_seatbelt_sensor_status = 1;
     test_air_cond_sensor_status = 1;
+    
     TEST_ASSERT(checkHardware(
         test_start_stop_sensor_status,
         test_speed_sensor_status,
@@ -268,6 +277,7 @@ void testCheckHardware_false4(void)
     test_door_sensor_status = 1;
     test_seatbelt_sensor_status = 1;
     test_air_cond_sensor_status = 1;
+    
     TEST_ASSERT(checkHardware(
         test_start_stop_sensor_status,
         test_speed_sensor_status,
@@ -294,6 +304,7 @@ void testCheckHardware_false5(void)
     test_door_sensor_status = 1;
     test_seatbelt_sensor_status = 1;
     test_air_cond_sensor_status = 1;
+    
     TEST_ASSERT(checkHardware(
         test_start_stop_sensor_status,
         test_speed_sensor_status,
@@ -320,6 +331,7 @@ void testCheckHardware_false6(void)
     test_door_sensor_status = 0;
     test_seatbelt_sensor_status = 0;
     test_air_cond_sensor_status = 0;
+    
     TEST_ASSERT(checkHardware(
         test_start_stop_sensor_status,
         test_speed_sensor_status,
@@ -346,6 +358,7 @@ void testCheckHardware_false7(void)
     test_door_sensor_status = 1;
     test_seatbelt_sensor_status = 1;
     test_air_cond_sensor_status = 1;
+    
     TEST_ASSERT(checkHardware(
         test_start_stop_sensor_status,
         test_speed_sensor_status,

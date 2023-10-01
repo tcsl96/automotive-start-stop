@@ -17,25 +17,29 @@ void tearDown(void) {};
 void testSafetyWarning_true(void)
 {
     test_sensor_value = 1;
-    TEST_ASSERT((safetyWarning(test_sensor_value) == 1));
+
+    TEST_ASSERT(safetyWarning(test_sensor_value) == 1);
 }
 
 void testSafetyWarning_false(void)
 {
     test_sensor_value = 0;
-    TEST_ASSERT((safetyWarning(test_sensor_value) == 0));
+
+    TEST_ASSERT(safetyWarning(test_sensor_value) == 0);
 }
 
 void testBrokenWarning_true(void)
 {
     test_sensor_status = 1;
-    TEST_ASSERT((brokenWarning(test_sensor_status) == 1));
+
+    TEST_ASSERT(brokenWarning(test_sensor_status) == 1);
 }
 
 void testBrokenWarning_false(void)
 {
     test_sensor_status = 0;
-    TEST_ASSERT((brokenWarning(test_sensor_status) == 0));
+    
+    TEST_ASSERT(brokenWarning(test_sensor_status) == 0);
 }
 
 int main(void)

@@ -32,7 +32,7 @@ int main() {
         decimal_part++;
     }
 
-    printf("inteiro = %d decimal = %d", integer_part, decimal_part);
+    printf("Integer bits = %d Decimal bits = %d", integer_part, decimal_part);
 
     return 0;
 }

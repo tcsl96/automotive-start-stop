@@ -1,4 +1,5 @@
-// Checks if hood, trunk, doors or seatbelt are setted up properly.
+// Checks if hood, trunk, doors and seatbelts are setted up properly.
+// If all of them aren't, deactivate the Start Stop. Otherwise, active it.
 
 uint8_t checkSafety(
     uint8_t hood_sensor_value,

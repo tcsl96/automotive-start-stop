@@ -1,4 +1,4 @@
-// checks if the car doors (hood, trunk, car doors) are closed and seatbelts are fastened. If not, sounds an alarm
+// Checks and returns a value from a given sensor.
 
 uint8_t safetyWarning(uint8_t sensor_value)
 {
@@ -12,7 +12,7 @@ uint8_t safetyWarning(uint8_t sensor_value)
     }
 }
 
-// checks if the sensors are drawing any power, using the boolean values sent to the ecu
+// Checks if a given sensor is working properly.
 
 uint8_t brokenWarning(uint8_t sensor_status)
 {

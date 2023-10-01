@@ -1,5 +1,17 @@
-// Function for checking if the hardware is working as expected.
-// If any sensors are not drawing power, their variable will be 0, thus returning a 0 value to the startStop function.
+// Checks if all sensors are working as expected.
+// If one of the following sensors are broken, deactivate the Start Stop:
+// * Start Stop ECU
+// * Speed sensor
+// * Brake sensor
+// * Engine temperature sensor
+// * Battery sensor
+// If all of the following sensors are broken, deactivate the Start Stop:
+// * Hood sensor
+// * Trunk sensor
+// * Door sensor
+// * Seatbelt sensor
+// * Air conditioner sensor
+// Otherwise the previous situations, activate the Start Stop.
 
 uint8_t checkHardware(
     uint8_t start_stop_sensor_status,
@@ -14,12 +26,6 @@ uint8_t checkHardware(
     uint8_t air_cond_sensor_status
 )
 {
-   // the hardware check will verify if the sensors are working properly
-   // calls the function "brokenWarning" that verifies the sensor_status and sensor_status and prints a warning
-
-    // function that checks if sensors are functioning, and runs an "and" function that tests if
-    // all doors are closed and if the AC is on or off
-
     return (
         brokenWarning(start_stop_sensor_status) &&
         brokenWarning(speed_sensor_status) && 

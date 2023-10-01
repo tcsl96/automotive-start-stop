@@ -5,7 +5,7 @@
 // Test variables
 
 uint8_t test_air_cond_speed;
-float test_SOC;
+fixed1_15 test_state_of_charge;
 
 // Defining start functions
 
@@ -17,29 +17,33 @@ void tearDown(void) {};
 void testCheckAirCond_false(void)
 {
     test_air_cond_speed = 3;
-    test_SOC = 0.5;
-    TEST_ASSERT((checkAirCond(test_air_cond_speed, test_SOC) == 0));
+    test_state_of_charge = 0.5f * (1u << FIXED1_15_FRAC);
+
+    TEST_ASSERT((checkAirCond(test_air_cond_speed, test_state_of_charge, FIXED1_15_FRAC) == 0));
 }
 
 void testCheckAirCond_true1(void)
 {
     test_air_cond_speed = 1;
-    test_SOC = 0.5;
-    TEST_ASSERT((checkAirCond(test_air_cond_speed, test_SOC) == 1));
+    test_state_of_charge = 0.5f * (1u << FIXED1_15_FRAC);
+
+    TEST_ASSERT((checkAirCond(test_air_cond_speed, test_state_of_charge, FIXED1_15_FRAC) == 1));
 }
 
 void testCheckAirCond_true2(void)
 {
     test_air_cond_speed = 3;
-    test_SOC = 0.9;
-    TEST_ASSERT((checkAirCond(test_air_cond_speed, test_SOC) == 1));
+    test_state_of_charge = 0.9f * (1u << FIXED1_15_FRAC);
+
+    TEST_ASSERT((checkAirCond(test_air_cond_speed, test_state_of_charge, FIXED1_15_FRAC) == 1));
 }
 
 void testCheckAirCond_true3(void)
 {
     test_air_cond_speed = 1;
-    test_SOC = 0.9;
-    TEST_ASSERT((checkAirCond(test_air_cond_speed, test_SOC) == 1));
+    test_state_of_charge = 0.9f * (1u << FIXED1_15_FRAC);
+    
+    TEST_ASSERT((checkAirCond(test_air_cond_speed, test_state_of_charge, FIXED1_15_FRAC) == 1));
 }
 
 int main(void)
