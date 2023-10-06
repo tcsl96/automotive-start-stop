@@ -54,6 +54,7 @@ uint8_t checkBrake(uint8_t braking_status, uint16_t time)
     else
     {
         braking_timer_status = TIMER_OFF;
+        braking_elapsed_time = 0;
         
         return START_STOP_OFF;
     }
@@ -68,7 +69,7 @@ uint8_t checkSystemLatency(uint8_t start_stop_status, uint8_t engine_status, uin
     static uint16_t restart_engine_start_time;
     static uint8_t restart_engine_elapsed_time;
 
-    if (start_stop_status == 0 && engine_status == 0)
+    if ((start_stop_status || engine_status) == 0)
     {
         if (restart_engine_timer_status == TIMER_OFF)
         {
@@ -100,6 +101,7 @@ uint8_t checkSystemLatency(uint8_t start_stop_status, uint8_t engine_status, uin
     else
     {
         restart_engine_timer_status = TIMER_OFF;
+        restart_engine_elapsed_time = 0;
         
         return 0;
     }

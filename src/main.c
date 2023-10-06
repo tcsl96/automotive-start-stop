@@ -1,3 +1,6 @@
+#define START_STOP_ON 1
+#define START_STOP_OFF 0
+
 #include "vars.c"
 #include "file_operations.c"
 #include "header/hardware.h"
@@ -7,9 +10,9 @@
 
 uint8_t startStop(void)
 {
-    if (entry.button_pressed == 1 || returned.latency_status == 1)
+    if ((entry.button_pressed || returned.latency_status) == 1)
     {
-        return 1;
+        returned.start_stop_status = START_STOP_OFF;
     }
     else
     {
@@ -28,7 +31,7 @@ uint8_t startStop(void)
 
         if (returned.hardware_status == 0)
         {
-            return 1;
+            returned.start_stop_status = START_STOP_OFF;
         }
         else
         {
@@ -46,11 +49,13 @@ uint8_t startStop(void)
                 checkAirCond(entry.air_cond_speed, entry.SOC, FIXED1_15_FRAC)
             );
 
-            returned.latency_status = checkSystemLatency(returned.system_status, entry.engine_on, entry.time);
-
-            return !returned.system_status;
+            returned.start_stop_status = returned.system_status;
         }
     }
+
+    returned.latency_status = checkSystemLatency(returned.system_status, entry.engine_on, entry.time);
+
+    return returned.start_stop_status;
 }
 
 int main()
@@ -64,9 +69,9 @@ int main()
     {
         loadVarsFromBuffer();
 
-        returned.set_engine_status = startStop();
-
-        printf("%d\n", returned.set_engine_status);
+        returned.set_engine_status = !startStop();
+        
+        // printf("%d\n", returned.set_engine_status);
     }
 
     return 0;

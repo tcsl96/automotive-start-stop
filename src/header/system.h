@@ -1,11 +1,11 @@
-#ifndef DYNAMICS_H
-    #include "../header/dynamics.h"
+#ifndef SAFETY_H
+    #include "../header/safety.h"
 #endif
 #ifndef POWER_H
     #include "../header/power.h"
 #endif
-#ifndef SAFETY_H
-    #include "../header/safety.h"
+#ifndef DYNAMICS_H
+    #include "../header/dynamics.h"
 #endif
 #ifndef WELLBEING_H
     #include "../header/wellbeing.h"

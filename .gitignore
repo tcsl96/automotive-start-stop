@@ -1,10 +1,4 @@
 .vscode/
-model/
 slprj/
 *.slxc
-*.zip
-*.rar
-*.pdf
-*.txt
 *.exe
-!variables.txt

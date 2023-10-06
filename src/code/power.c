@@ -4,8 +4,8 @@
 uint8_t checkEngineTemp(fixed7_9 engine_internal_temp, uint8_t fractional_bits)
 {
     if (
-        engine_internal_temp > (90u << fractional_bits) &&
-        engine_internal_temp < (104u << fractional_bits)
+        (engine_internal_temp > (90u << fractional_bits)) &&
+        (engine_internal_temp < (104u << fractional_bits))
     )
     {
         return START_STOP_ON;

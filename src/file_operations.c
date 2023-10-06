@@ -22,7 +22,7 @@ uint16_t storeFileOnBuffer(void)
     FILE * pFile;
     uint32_t file_size = 0;
     uint16_t newline_count = 0;
-    uint16_t result;
+    size_t result;
     char file_char;
 
     // Load the file.

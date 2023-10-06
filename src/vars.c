@@ -57,5 +57,6 @@ struct returned_vars
     uint8_t hardware_status : 1;
     uint8_t system_status : 1;
     uint8_t latency_status : 1;
-    uint8_t : 4;
+    uint8_t start_stop_status : 1;
+    uint8_t : 3;
 } returned;

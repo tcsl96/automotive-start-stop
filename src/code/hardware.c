@@ -26,17 +26,17 @@ uint8_t checkHardware(
     uint8_t air_cond_sensor_status
 )
 {
-    return (
+    return ((
         brokenWarning(start_stop_sensor_status) &&
-        brokenWarning(speed_sensor_status) && 
-        brokenWarning(brake_sensor_status) && 
-        brokenWarning(engine_temp_sensor_status) && 
+        brokenWarning(speed_sensor_status) &&
+        brokenWarning(brake_sensor_status) &&
+        brokenWarning(engine_temp_sensor_status) &&
         brokenWarning(battery_sensor_status)
-    ) && ( 
-        brokenWarning(hood_sensor_status) || 
-        brokenWarning(trunk_sensor_status) || 
-        brokenWarning(door_sensor_status) || 
+    ) && (
+        brokenWarning(hood_sensor_status) ||
+        brokenWarning(trunk_sensor_status) ||
+        brokenWarning(door_sensor_status) ||
         brokenWarning(seatbelt_sensor_status) ||
         brokenWarning(air_cond_sensor_status)
-    );
+    ));
 }
