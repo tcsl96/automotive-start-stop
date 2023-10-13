@@ -1,10 +1,8 @@
-#include <stdint.h>
 #include "src_unity/unity.c"
-#include "../src/header/hardware.h"
+#include "../include/hardware.h"
 
 // Test variables
 
-uint8_t test_start_stop_sensor_status;
 uint8_t test_speed_sensor_status;
 uint8_t test_brake_sensor_status;
 uint8_t test_engine_temp_sensor_status;
@@ -24,7 +22,6 @@ void tearDown(void) {};
 
 void testCheckHardware_true1(void)
 {
-    test_start_stop_sensor_status = 1;
     test_speed_sensor_status = 1;
     test_brake_sensor_status = 1;
     test_engine_temp_sensor_status = 1;
@@ -35,9 +32,8 @@ void testCheckHardware_true1(void)
     test_seatbelt_sensor_status = 1;
     test_air_cond_sensor_status = 1;
     
-    TEST_ASSERT(checkHardware(
-        test_start_stop_sensor_status,
-        test_speed_sensor_status,
+    TEST_ASSERT(hardware_check_hardware(
+     test_speed_sensor_status,
         test_brake_sensor_status,
         test_engine_temp_sensor_status,
         test_battery_sensor_status,
@@ -51,7 +47,6 @@ void testCheckHardware_true1(void)
 
 void testCheckHardware_true2(void)
 {
-    test_start_stop_sensor_status = 1;
     test_speed_sensor_status = 1;
     test_brake_sensor_status = 1;
     test_engine_temp_sensor_status = 1;
@@ -62,9 +57,8 @@ void testCheckHardware_true2(void)
     test_seatbelt_sensor_status = 0;
     test_air_cond_sensor_status = 0;
     
-    TEST_ASSERT(checkHardware(
-        test_start_stop_sensor_status,
-        test_speed_sensor_status,
+    TEST_ASSERT(hardware_check_hardware(
+     test_speed_sensor_status,
         test_brake_sensor_status,
         test_engine_temp_sensor_status,
         test_battery_sensor_status,
@@ -78,7 +72,6 @@ void testCheckHardware_true2(void)
 
 void testCheckHardware_true3(void)
 {
-    test_start_stop_sensor_status = 1;
     test_speed_sensor_status = 1;
     test_brake_sensor_status = 1;
     test_engine_temp_sensor_status = 1;
@@ -89,9 +82,8 @@ void testCheckHardware_true3(void)
     test_seatbelt_sensor_status = 0;
     test_air_cond_sensor_status = 0;
     
-    TEST_ASSERT(checkHardware(
-        test_start_stop_sensor_status,
-        test_speed_sensor_status,
+    TEST_ASSERT(hardware_check_hardware(
+     test_speed_sensor_status,
         test_brake_sensor_status,
         test_engine_temp_sensor_status,
         test_battery_sensor_status,
@@ -105,7 +97,6 @@ void testCheckHardware_true3(void)
 
 void testCheckHardware_true4(void)
 {
-    test_start_stop_sensor_status = 1;
     test_speed_sensor_status = 1;
     test_brake_sensor_status = 1;
     test_engine_temp_sensor_status = 1;
@@ -116,9 +107,8 @@ void testCheckHardware_true4(void)
     test_seatbelt_sensor_status = 0;
     test_air_cond_sensor_status = 0;
     
-    TEST_ASSERT(checkHardware(
-        test_start_stop_sensor_status,
-        test_speed_sensor_status,
+    TEST_ASSERT(hardware_check_hardware(
+     test_speed_sensor_status,
         test_brake_sensor_status,
         test_engine_temp_sensor_status,
         test_battery_sensor_status,
@@ -132,7 +122,6 @@ void testCheckHardware_true4(void)
 
 void testCheckHardware_true5(void)
 {
-    test_start_stop_sensor_status = 1;
     test_speed_sensor_status = 1;
     test_brake_sensor_status = 1;
     test_engine_temp_sensor_status = 1;
@@ -143,9 +132,8 @@ void testCheckHardware_true5(void)
     test_seatbelt_sensor_status = 1;
     test_air_cond_sensor_status = 0;
     
-    TEST_ASSERT(checkHardware(
-        test_start_stop_sensor_status,
-        test_speed_sensor_status,
+    TEST_ASSERT(hardware_check_hardware(
+     test_speed_sensor_status,
         test_brake_sensor_status,
         test_engine_temp_sensor_status,
         test_battery_sensor_status,
@@ -159,7 +147,6 @@ void testCheckHardware_true5(void)
 
 void testCheckHardware_true6(void)
 {
-    test_start_stop_sensor_status = 1;
     test_speed_sensor_status = 1;
     test_brake_sensor_status = 1;
     test_engine_temp_sensor_status = 1;
@@ -170,9 +157,8 @@ void testCheckHardware_true6(void)
     test_seatbelt_sensor_status = 0;
     test_air_cond_sensor_status = 1;
     
-    TEST_ASSERT(checkHardware(
-        test_start_stop_sensor_status,
-        test_speed_sensor_status,
+    TEST_ASSERT(hardware_check_hardware(
+     test_speed_sensor_status,
         test_brake_sensor_status,
         test_engine_temp_sensor_status,
         test_battery_sensor_status,
@@ -186,7 +172,6 @@ void testCheckHardware_true6(void)
 
 void testCheckHardware_false1(void)
 {
-    test_start_stop_sensor_status = 0;
     test_speed_sensor_status = 1;
     test_brake_sensor_status = 1;
     test_engine_temp_sensor_status = 1;
@@ -197,9 +182,8 @@ void testCheckHardware_false1(void)
     test_seatbelt_sensor_status = 1;
     test_air_cond_sensor_status = 1;
     
-    TEST_ASSERT(checkHardware(
-        test_start_stop_sensor_status,
-        test_speed_sensor_status,
+    TEST_ASSERT(hardware_check_hardware(
+     test_speed_sensor_status,
         test_brake_sensor_status,
         test_engine_temp_sensor_status,
         test_battery_sensor_status,
@@ -213,7 +197,6 @@ void testCheckHardware_false1(void)
 
 void testCheckHardware_false2(void)
 {
-    test_start_stop_sensor_status = 1;
     test_speed_sensor_status = 0;
     test_brake_sensor_status = 1;
     test_engine_temp_sensor_status = 1;
@@ -224,9 +207,8 @@ void testCheckHardware_false2(void)
     test_seatbelt_sensor_status = 1;
     test_air_cond_sensor_status = 1;
     
-    TEST_ASSERT(checkHardware(
-        test_start_stop_sensor_status,
-        test_speed_sensor_status,
+    TEST_ASSERT(hardware_check_hardware(
+     test_speed_sensor_status,
         test_brake_sensor_status,
         test_engine_temp_sensor_status,
         test_battery_sensor_status,
@@ -240,7 +222,6 @@ void testCheckHardware_false2(void)
 
 void testCheckHardware_false3(void)
 {
-    test_start_stop_sensor_status = 1;
     test_speed_sensor_status = 1;
     test_brake_sensor_status = 0;
     test_engine_temp_sensor_status = 1;
@@ -251,9 +232,8 @@ void testCheckHardware_false3(void)
     test_seatbelt_sensor_status = 1;
     test_air_cond_sensor_status = 1;
     
-    TEST_ASSERT(checkHardware(
-        test_start_stop_sensor_status,
-        test_speed_sensor_status,
+    TEST_ASSERT(hardware_check_hardware(
+     test_speed_sensor_status,
         test_brake_sensor_status,
         test_engine_temp_sensor_status,
         test_battery_sensor_status,
@@ -267,7 +247,6 @@ void testCheckHardware_false3(void)
 
 void testCheckHardware_false4(void)
 {
-    test_start_stop_sensor_status = 1;
     test_speed_sensor_status = 1;
     test_brake_sensor_status = 1;
     test_engine_temp_sensor_status = 0;
@@ -278,9 +257,8 @@ void testCheckHardware_false4(void)
     test_seatbelt_sensor_status = 1;
     test_air_cond_sensor_status = 1;
     
-    TEST_ASSERT(checkHardware(
-        test_start_stop_sensor_status,
-        test_speed_sensor_status,
+    TEST_ASSERT(hardware_check_hardware(
+     test_speed_sensor_status,
         test_brake_sensor_status,
         test_engine_temp_sensor_status,
         test_battery_sensor_status,
@@ -294,7 +272,6 @@ void testCheckHardware_false4(void)
 
 void testCheckHardware_false5(void)
 {
-    test_start_stop_sensor_status = 1;
     test_speed_sensor_status = 1;
     test_brake_sensor_status = 1;
     test_engine_temp_sensor_status = 1;
@@ -305,9 +282,8 @@ void testCheckHardware_false5(void)
     test_seatbelt_sensor_status = 1;
     test_air_cond_sensor_status = 1;
     
-    TEST_ASSERT(checkHardware(
-        test_start_stop_sensor_status,
-        test_speed_sensor_status,
+    TEST_ASSERT(hardware_check_hardware(
+     test_speed_sensor_status,
         test_brake_sensor_status,
         test_engine_temp_sensor_status,
         test_battery_sensor_status,
@@ -321,7 +297,6 @@ void testCheckHardware_false5(void)
 
 void testCheckHardware_false6(void)
 {
-    test_start_stop_sensor_status = 1;
     test_speed_sensor_status = 1;
     test_brake_sensor_status = 1;
     test_engine_temp_sensor_status = 1;
@@ -332,9 +307,8 @@ void testCheckHardware_false6(void)
     test_seatbelt_sensor_status = 0;
     test_air_cond_sensor_status = 0;
     
-    TEST_ASSERT(checkHardware(
-        test_start_stop_sensor_status,
-        test_speed_sensor_status,
+    TEST_ASSERT(hardware_check_hardware(
+     test_speed_sensor_status,
         test_brake_sensor_status,
         test_engine_temp_sensor_status,
         test_battery_sensor_status,
@@ -348,7 +322,6 @@ void testCheckHardware_false6(void)
 
 void testCheckHardware_false7(void)
 {
-    test_start_stop_sensor_status = 0;
     test_speed_sensor_status = 0;
     test_brake_sensor_status = 0;
     test_engine_temp_sensor_status = 0;
@@ -359,9 +332,8 @@ void testCheckHardware_false7(void)
     test_seatbelt_sensor_status = 1;
     test_air_cond_sensor_status = 1;
     
-    TEST_ASSERT(checkHardware(
-        test_start_stop_sensor_status,
-        test_speed_sensor_status,
+    TEST_ASSERT(hardware_check_hardware(
+     test_speed_sensor_status,
         test_brake_sensor_status,
         test_engine_temp_sensor_status,
         test_battery_sensor_status,

@@ -1,0 +1,19 @@
+{
+    "files.associations": {
+        "stddef.h": "c",
+        "crtdefs.h": "c",
+        "stdio.h": "c",
+        "system.h": "c",
+        "hardware.h": "c",
+        "stdint.h": "c",
+        "fixed.h": "c",
+        "warnings.h": "c",
+        "dynamics.h": "c",
+        "safety.h": "c",
+        "power.h": "c",
+        "wellbeing.h": "c",
+        "start_stop.h": "c",
+        "file_operations.h": "c",
+        "stdbool.h": "c"
+    }
+}
