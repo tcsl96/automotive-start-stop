@@ -39,7 +39,7 @@ uint16_t storeFileOnBuffer(void)
     rewind(pFile);
 
     // Allocate memory to contain the whole file.
-    buffer = (char *)malloc(sizeof(char) * file_size);
+    buffer = (char *)malloc(sizeof(char)*file_size);
     if (buffer == NULL)
     {
         fputs("Memory error.", stderr);
@@ -48,7 +48,7 @@ uint16_t storeFileOnBuffer(void)
 
     // Copy the file into the buffer.
     result = fread(buffer, sizeof(char), file_size, pFile);
-    if (result != file_size - newline_count)
+    if (result != (file_size - newline_count))
     {
         fputs("Reading error.", stderr);
         exit(3);
@@ -70,21 +70,21 @@ void loadVarsFromBuffer(sys_in_t *ss_s_system_input)
     static uint8_t step_ss_b_engine_on;
 
     // Hardware variables.
-    static uint8_t step_ss_b_speed_sensor_broken;
-    static uint8_t step_ss_b_brake_sensor_broken;
-    static uint8_t step_ss_b_engine_temp_sensor_broken;
-    static uint8_t step_ss_b_battery_sensor_broken;
-    static uint8_t step_ss_b_hood_sensor_broken;
-    static uint8_t step_ss_b_trunk_sensor_broken;
-    static uint8_t step_ss_b_door_sensor_broken;
-    static uint8_t step_ss_b_seatbelt_sensor_broken;
-    static uint8_t step_ss_b_air_cond_sensor_broken;
+    static uint8_t step_ss_b_speed_sensor_ok;
+    static uint8_t step_ss_b_brake_sensor_ok;
+    static uint8_t step_ss_b_engine_temp_sensor_ok;
+    static uint8_t step_ss_b_battery_sensor_ok;
+    static uint8_t step_ss_b_hood_sensor_ok;
+    static uint8_t step_ss_b_trunk_sensor_ok;
+    static uint8_t step_ss_b_door_sensor_ok;
+    static uint8_t step_ss_b_seatbelt_sensor_ok;
+    static uint8_t step_ss_b_air_cond_sensor_ok;
 
     // Safety variables.
-    static uint8_t step_ss_b_hood_open;
-    static uint8_t step_ss_b_trunk_open;
-    static uint8_t step_ss_b_door_open;
-    static uint8_t step_ss_b_seatbelt_not_fastened;
+    static uint8_t step_ss_b_hood_closed;
+    static uint8_t step_ss_b_trunk_closed;
+    static uint8_t step_ss_b_door_closed;
+    static uint8_t step_ss_b_seatbelt_fastened;
 
     // Power variables.
     static float step_ss_fc_tmp;
@@ -101,19 +101,19 @@ void loadVarsFromBuffer(sys_in_t *ss_s_system_input)
     sscanf(buffer + bytes_read, "%hhu %hhu %hhu %hhu %hhu %hhu %hhu %hhu %hhu %hhu %hhu %hhu %hhu %hhu %hhu %f %f %f %hu %hhu %hhu\n%hn",
         &step_ss_b_button_pressed,
         &step_ss_b_engine_on,
-        &step_ss_b_speed_sensor_broken,
-        &step_ss_b_brake_sensor_broken,
-        &step_ss_b_engine_temp_sensor_broken,
-        &step_ss_b_battery_sensor_broken,
-        &step_ss_b_hood_sensor_broken,
-        &step_ss_b_trunk_sensor_broken,
-        &step_ss_b_door_sensor_broken,
-        &step_ss_b_seatbelt_sensor_broken,
-        &step_ss_b_air_cond_sensor_broken,
-        &step_ss_b_hood_open,
-        &step_ss_b_trunk_open,
-        &step_ss_b_door_open,
-        &step_ss_b_seatbelt_not_fastened,
+        &step_ss_b_speed_sensor_ok,
+        &step_ss_b_brake_sensor_ok,
+        &step_ss_b_engine_temp_sensor_ok,
+        &step_ss_b_battery_sensor_ok,
+        &step_ss_b_hood_sensor_ok,
+        &step_ss_b_trunk_sensor_ok,
+        &step_ss_b_door_sensor_ok,
+        &step_ss_b_seatbelt_sensor_ok,
+        &step_ss_b_air_cond_sensor_ok,
+        &step_ss_b_hood_closed,
+        &step_ss_b_trunk_closed,
+        &step_ss_b_door_closed,
+        &step_ss_b_seatbelt_fastened,
         &step_ss_fc_tmp,
         &step_ss_SOC,
         &step_ss_mpha,
@@ -123,25 +123,25 @@ void loadVarsFromBuffer(sys_in_t *ss_s_system_input)
         &bytes_count);
     bytes_read += bytes_count;
 
-    ss_s_system_input->ss_b_button_pressed               = step_ss_b_button_pressed;
-    ss_s_system_input->ss_b_engine_on                    = step_ss_b_engine_on;
-    ss_s_system_input->ss_b_speed_sensor_broken          = step_ss_b_speed_sensor_broken;
-    ss_s_system_input->ss_b_brake_sensor_broken          = step_ss_b_brake_sensor_broken;
-    ss_s_system_input->ss_b_engine_temp_sensor_broken    = step_ss_b_engine_temp_sensor_broken;
-    ss_s_system_input->ss_b_battery_sensor_broken        = step_ss_b_battery_sensor_broken;
-    ss_s_system_input->ss_b_hood_sensor_broken           = step_ss_b_hood_sensor_broken;
-    ss_s_system_input->ss_b_trunk_sensor_broken          = step_ss_b_trunk_sensor_broken;
-    ss_s_system_input->ss_b_door_sensor_broken           = step_ss_b_door_sensor_broken;
-    ss_s_system_input->ss_b_seatbelt_sensor_broken       = step_ss_b_seatbelt_sensor_broken;
-    ss_s_system_input->ss_b_air_cond_sensor_broken       = step_ss_b_air_cond_sensor_broken;
-    ss_s_system_input->ss_b_hood_open                    = step_ss_b_hood_open;
-    ss_s_system_input->ss_b_trunk_open                   = step_ss_b_trunk_open;
-    ss_s_system_input->ss_b_door_open                    = step_ss_b_door_open;
-    ss_s_system_input->ss_b_seatbelt_not_fastened        = step_ss_b_seatbelt_not_fastened;
-    ss_s_system_input->fc_tmp                            = (fixed7_9_t)(step_ss_fc_tmp * (1u << FIXED7_9_FRAC));
-    ss_s_system_input->SOC                               = (fixed1_15_t)(step_ss_SOC * (1u << FIXED1_15_FRAC));
-    ss_s_system_input->mpha                              = (fixed7_9_t)(step_ss_mpha * (1u << FIXED7_9_FRAC));
-    ss_s_system_input->time                              = step_ss_time;
-    ss_s_system_input->lim_clutch_dis                    = step_ss_b_lim_clutch_dis;
-    ss_s_system_input->ss_air_cond_speed                 = step_ss_b_air_cond_speed;
+    ss_s_system_input->ss_b_button_pressed           = step_ss_b_button_pressed;
+    ss_s_system_input->ss_b_engine_on                = step_ss_b_engine_on;
+    ss_s_system_input->ss_b_speed_sensor_ok          = step_ss_b_speed_sensor_ok;
+    ss_s_system_input->ss_b_brake_sensor_ok          = step_ss_b_brake_sensor_ok;
+    ss_s_system_input->ss_b_engine_temp_sensor_ok    = step_ss_b_engine_temp_sensor_ok;
+    ss_s_system_input->ss_b_battery_sensor_ok        = step_ss_b_battery_sensor_ok;
+    ss_s_system_input->ss_b_hood_sensor_ok           = step_ss_b_hood_sensor_ok;
+    ss_s_system_input->ss_b_trunk_sensor_ok          = step_ss_b_trunk_sensor_ok;
+    ss_s_system_input->ss_b_door_sensor_ok           = step_ss_b_door_sensor_ok;
+    ss_s_system_input->ss_b_seatbelt_sensor_ok       = step_ss_b_seatbelt_sensor_ok;
+    ss_s_system_input->ss_b_air_cond_sensor_ok       = step_ss_b_air_cond_sensor_ok;
+    ss_s_system_input->ss_b_hood_closed              = step_ss_b_hood_closed;
+    ss_s_system_input->ss_b_trunk_closed             = step_ss_b_trunk_closed;
+    ss_s_system_input->ss_b_door_closed              = step_ss_b_door_closed;
+    ss_s_system_input->ss_b_seatbelt_fastened        = step_ss_b_seatbelt_fastened;
+    ss_s_system_input->fc_tmp                        = (fixed7_9_t)(step_ss_fc_tmp*(1u << FIXED7_9_FRAC));
+    ss_s_system_input->SOC                           = (fixed1_15_t)(step_ss_SOC*(1u << FIXED1_15_FRAC));
+    ss_s_system_input->mpha                          = (fixed7_9_t)(step_ss_mpha*(1u << FIXED7_9_FRAC));
+    ss_s_system_input->time                          = step_ss_time;
+    ss_s_system_input->lim_clutch_dis                = step_ss_b_lim_clutch_dis;
+    ss_s_system_input->ss_air_cond_speed             = step_ss_b_air_cond_speed;
 }

@@ -5,7 +5,7 @@
 
 uint8_t dynamics_check_speed(fixed7_9_t ss_car_speed_mph, uint8_t fractional_bits)
 {
-    if (ss_car_speed_mph * 1.6095f < (5u << fractional_bits))
+    if (ss_car_speed_mph*1.6095f < (5u << fractional_bits))
     {
         return START_STOP_ON;
     }
@@ -34,7 +34,7 @@ uint8_t dynamics_check_brake(uint8_t ss_b_car_braking, uint16_t time)
         }
         else
         {
-            if (time - ss_braking_start_time > 5)
+            if ((time - ss_braking_start_time) > 5)
             {
                 ss_braking_elapsed_time = 5;
             }

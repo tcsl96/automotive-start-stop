@@ -7,18 +7,16 @@
 // * Door
 
 uint8_t safety_check_safety(
-    uint8_t ss_b_hood_open,
-    uint8_t ss_b_trunk_open,
-    uint8_t ss_b_door_open,
-    uint8_t ss_b_seatbelt_not_fastened
+    uint8_t ss_b_hood_closed,
+    uint8_t ss_b_trunk_closed,
+    uint8_t ss_b_door_closed,
+    uint8_t ss_b_seatbelt_fastened
 )
 {
-    return (
-        (
-            warnings_safety_warning(ss_b_hood_open) &&
-            warnings_safety_warning(ss_b_trunk_open) &&
-            warnings_safety_warning(ss_b_door_open)
-        ) || 
-        warnings_safety_warning(ss_b_seatbelt_not_fastened)
+    return ((
+                ss_b_hood_closed &&
+                ss_b_trunk_closed &&
+                ss_b_door_closed
+            ) || ss_b_seatbelt_fastened
     );
 }

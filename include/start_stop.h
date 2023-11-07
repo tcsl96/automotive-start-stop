@@ -25,23 +25,23 @@ typedef struct system_input
     uint8_t ss_b_engine_on : 1;
 
     // Hardware variables.
-    uint8_t ss_b_speed_sensor_broken : 1;
-    uint8_t ss_b_brake_sensor_broken : 1;
-    uint8_t ss_b_engine_temp_sensor_broken : 1;
-    uint8_t ss_b_battery_sensor_broken : 1;
-    uint8_t ss_b_hood_sensor_broken : 1;
-    uint8_t ss_b_trunk_sensor_broken : 1;
-    uint8_t ss_b_door_sensor_broken : 1;
-    uint8_t ss_b_seatbelt_sensor_broken : 1;
-    uint8_t ss_b_air_cond_sensor_broken : 1;
+    uint8_t ss_b_speed_sensor_ok : 1;
+    uint8_t ss_b_brake_sensor_ok : 1;
+    uint8_t ss_b_engine_temp_sensor_ok : 1;
+    uint8_t ss_b_battery_sensor_ok : 1;
+    uint8_t ss_b_hood_sensor_ok : 1;
+    uint8_t ss_b_trunk_sensor_ok : 1;
+    uint8_t ss_b_door_sensor_ok : 1;
+    uint8_t ss_b_seatbelt_sensor_ok : 1;
+    uint8_t ss_b_air_cond_sensor_ok : 1;
 
     // Safety variables.
-    uint8_t ss_b_hood_open : 1;
-    uint8_t ss_b_trunk_open : 1;
-    uint8_t ss_b_door_open : 1;
-    uint8_t ss_b_seatbelt_not_fastened : 1;
+    uint8_t ss_b_hood_closed : 1;
+    uint8_t ss_b_trunk_closed : 1;
+    uint8_t ss_b_door_closed : 1;
+    uint8_t ss_b_seatbelt_fastened : 1;
 
-    uint8_t _unused : 1;
+    uint8_t unused : 1;
 
     // Power variables.
     fixed7_9_t fc_tmp : 16;
@@ -70,7 +70,7 @@ typedef struct system_output
     uint8_t ss_b_set_engine_on : 1;
     uint8_t ss_b_latency_alert : 1;
 
-    uint8_t _unused : 6;
+    uint8_t unused : 6;
 } sys_out_t;
 
 void start_stop_initialize(sys_in_t *ss_s_system_input, sys_out_t *ss_s_system_returns);

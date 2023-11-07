@@ -3,7 +3,7 @@
 
 int main()
 {
-    static sys_in_t ss_s_system_input;
+    static sys_in_t ss_s_system_input = { 0 };
     static sys_out_t ss_s_system_returns = { 0 };
 
     static uint16_t sim_size;
