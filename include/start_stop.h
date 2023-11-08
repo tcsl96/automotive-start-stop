@@ -11,9 +11,19 @@
 #include "dynamics.h"
 #include "wellbeing.h"
 
+#ifndef START_STOP_STATUS
+#define START_STOP_ON true
+#define START_STOP_OFF false
+#endif
+
 #ifndef TIMER_STATUS
 #define TIMER_ON true
 #define TIMER_OFF false
+#endif
+
+#ifndef LATENCY_STATUS
+#define LATENCY_ON true
+#define LATENCY_OFF false
 #endif
 
 // Declaring the variables. All members of entry struct are designed for being forwarded from the simulink model.
@@ -73,7 +83,7 @@ typedef struct system_output
     uint8_t unused : 6;
 } sys_out_t;
 
-void start_stop_initialize(sys_in_t *ss_s_system_input, sys_out_t *ss_s_system_returns);
-void start_stop_check_latency(sys_in_t *ss_s_system_input, sys_out_t *ss_s_system_returns);
+void start_stop_initialize(sys_in_t *ss_s_system_input, sys_out_t *ss_s_system_output);
+void start_stop_check_latency(sys_in_t *ss_s_system_input, sys_out_t *ss_s_system_output);
 
 #endif /* START_STOP_H */

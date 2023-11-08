@@ -1,11 +1,12 @@
+#include <stdbool.h>
 #include "src_unity/unity.c"
 #include "../include/dynamics.h"
 
 // Test variables
 
-fixed7_9_t test_vehicle_speed_mph;
-uint8_t test_braking_status;
-uint16_t test_time;
+fixed7_9_t ss_car_speed_mph;
+uint8_t ss_b_car_braking;
+uint16_t time;
 uint8_t expected;
 
 // Defining start functions
@@ -15,53 +16,53 @@ void tearDown(void) {};
 
 // Defining test functions
 
-void testCheckSpeed_true(void)
+void test_check_speed_true(void)
 {
-    test_vehicle_speed_mph = 2.123f * (1u << FIXED7_9_FRAC);
+    ss_car_speed_mph = 2.123f*(1u << FIXED7_9_FRAC);
 
-    TEST_ASSERT(dynamics_check_speed(test_vehicle_speed_mph, FIXED7_9_FRAC) == 1);
+    TEST_ASSERT(dynamics_check_speed(ss_car_speed_mph, FIXED7_9_FRAC) == true);
 }
 
-void testCheckSpeed_false(void)
+void test_check_speed_false(void)
 {
-    test_vehicle_speed_mph = 6.123f * (1u << FIXED7_9_FRAC);
+    ss_car_speed_mph = 6.123f*(1u << FIXED7_9_FRAC);
 
-    TEST_ASSERT(dynamics_check_speed(test_vehicle_speed_mph, FIXED7_9_FRAC) == 0);
+    TEST_ASSERT(dynamics_check_speed(ss_car_speed_mph, FIXED7_9_FRAC) == false);
 }
 
-void testCheckBrake_true(void)
+void test_check_brake_true(void)
 {
-    test_braking_status = 1;
+    ss_b_car_braking = true;
 
-    for (test_time = 0; test_time < 10; test_time++)
+    for (time = 0; time < 10; time++)
     {
-        if (test_time < 5)
+        if (time < 5)
         {
-            expected = 0;
+            expected = false;
         }
         else
         {
-            expected = 1;
+            expected = true;
         }
 
-        TEST_ASSERT(dynamics_check_brake(test_braking_status, test_time) == expected);
+        TEST_ASSERT(dynamics_check_brake(ss_b_car_braking, time) == expected);
     }
 }
 
-void testCheckBrake_false(void)
+void test_check_brake_false(void)
 {
-    test_braking_status = 0;
-    test_time = 10;
+    ss_b_car_braking = false;
+    time = 10;
 
-    TEST_ASSERT(dynamics_check_brake(test_braking_status, test_time) == 0);
+    TEST_ASSERT(dynamics_check_brake(ss_b_car_braking, time) == false);
 }
 
 int main(void)
 {
     UNITY_BEGIN();
-    RUN_TEST(testCheckSpeed_true);
-    RUN_TEST(testCheckSpeed_false);
-    RUN_TEST(testCheckBrake_true);
-    RUN_TEST(testCheckBrake_false);
+    RUN_TEST(test_check_speed_true);
+    RUN_TEST(test_check_speed_false);
+    RUN_TEST(test_check_brake_true);
+    RUN_TEST(test_check_brake_false);
     return UNITY_END();
 }

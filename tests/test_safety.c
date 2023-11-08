@@ -1,12 +1,13 @@
+#include <stdbool.h>
 #include "src_unity/unity.c"
 #include "../include/safety.h"
 
 // Test variables
 
-uint8_t test_hood_sensor_value;
-uint8_t test_trunk_sensor_value;
-uint8_t test_door_sensor_value;
-uint8_t test_seatbelt_sensor_value;
+uint8_t ss_b_hood_closed;
+uint8_t ss_b_trunk_closed;
+uint8_t ss_b_door_closed;
+uint8_t ss_b_seatbelt_fastened;
 
 // Defining start functions
 
@@ -15,264 +16,264 @@ void tearDown(void) {};
 
 // Defining test functions
 
-void testCheckSafety_true1(void)
+void test_check_safety_true1(void)
 {
-    test_hood_sensor_value = 1;
-    test_trunk_sensor_value = 1;
-    test_door_sensor_value = 1;
-    test_seatbelt_sensor_value = 1;
+    ss_b_hood_closed = true;
+    ss_b_trunk_closed = true;
+    ss_b_door_closed = true;
+    ss_b_seatbelt_fastened = true;
     
-    TEST_ASSERT((safety_check_safety(
-        test_hood_sensor_value,
-        test_trunk_sensor_value,
-        test_door_sensor_value,
-        test_seatbelt_sensor_value
-    ) == 1));
+    TEST_ASSERT(safety_check_safety(
+        ss_b_hood_closed,
+        ss_b_trunk_closed,
+        ss_b_door_closed,
+        ss_b_seatbelt_fastened
+    ) == true);
 }
 
-void testCheckSafety_true2(void)
+void test_check_safety_true2(void)
 {
-    test_hood_sensor_value = 1;
-    test_trunk_sensor_value = 1;
-    test_door_sensor_value = 1;
-    test_seatbelt_sensor_value = 0;
+    ss_b_hood_closed = true;
+    ss_b_trunk_closed = true;
+    ss_b_door_closed = true;
+    ss_b_seatbelt_fastened = false;
     
-    TEST_ASSERT((safety_check_safety(
-        test_hood_sensor_value,
-        test_trunk_sensor_value,
-        test_door_sensor_value,
-        test_seatbelt_sensor_value
-    ) == 1));
+    TEST_ASSERT(safety_check_safety(
+        ss_b_hood_closed,
+        ss_b_trunk_closed,
+        ss_b_door_closed,
+        ss_b_seatbelt_fastened
+    ) == true);
 }
 
-void testCheckSafety_true3(void)
+void test_check_safety_true3(void)
 {
-    test_hood_sensor_value = 1;
-    test_trunk_sensor_value = 1;
-    test_door_sensor_value = 0;
-    test_seatbelt_sensor_value = 1;
+    ss_b_hood_closed = true;
+    ss_b_trunk_closed = true;
+    ss_b_door_closed = false;
+    ss_b_seatbelt_fastened = true;
     
-    TEST_ASSERT((safety_check_safety(
-        test_hood_sensor_value,
-        test_trunk_sensor_value,
-        test_door_sensor_value,
-        test_seatbelt_sensor_value
-    ) == 1));
+    TEST_ASSERT(safety_check_safety(
+        ss_b_hood_closed,
+        ss_b_trunk_closed,
+        ss_b_door_closed,
+        ss_b_seatbelt_fastened
+    ) == true);
 }
 
-void testCheckSafety_true4(void)
+void test_check_safety_true4(void)
 {
-    test_hood_sensor_value = 1;
-    test_trunk_sensor_value = 1;
-    test_door_sensor_value = 0;
-    test_seatbelt_sensor_value = 0;
+    ss_b_hood_closed = true;
+    ss_b_trunk_closed = true;
+    ss_b_door_closed = false;
+    ss_b_seatbelt_fastened = false;
     
-    TEST_ASSERT((safety_check_safety(
-        test_hood_sensor_value,
-        test_trunk_sensor_value,
-        test_door_sensor_value,
-        test_seatbelt_sensor_value
-    ) == 1));
+    TEST_ASSERT(safety_check_safety(
+        ss_b_hood_closed,
+        ss_b_trunk_closed,
+        ss_b_door_closed,
+        ss_b_seatbelt_fastened
+    ) == true);
 }
 
-void testCheckSafety_true5(void)
+void test_check_safety_true5(void)
 {
-    test_hood_sensor_value = 1;
-    test_trunk_sensor_value = 0;
-    test_door_sensor_value = 1;
-    test_seatbelt_sensor_value = 1;
+    ss_b_hood_closed = true;
+    ss_b_trunk_closed = false;
+    ss_b_door_closed = true;
+    ss_b_seatbelt_fastened = true;
     
-    TEST_ASSERT((safety_check_safety(
-        test_hood_sensor_value,
-        test_trunk_sensor_value,
-        test_door_sensor_value,
-        test_seatbelt_sensor_value
-    ) == 1));
+    TEST_ASSERT(safety_check_safety(
+        ss_b_hood_closed,
+        ss_b_trunk_closed,
+        ss_b_door_closed,
+        ss_b_seatbelt_fastened
+    ) == true);
 }
 
-void testCheckSafety_true6(void)
+void test_check_safety_true6(void)
 {
-    test_hood_sensor_value = 1;
-    test_trunk_sensor_value = 0;
-    test_door_sensor_value = 1;
-    test_seatbelt_sensor_value = 0;
+    ss_b_hood_closed = true;
+    ss_b_trunk_closed = false;
+    ss_b_door_closed = true;
+    ss_b_seatbelt_fastened = false;
     
-    TEST_ASSERT((safety_check_safety(
-        test_hood_sensor_value,
-        test_trunk_sensor_value,
-        test_door_sensor_value,
-        test_seatbelt_sensor_value
-    ) == 1));
+    TEST_ASSERT(safety_check_safety(
+        ss_b_hood_closed,
+        ss_b_trunk_closed,
+        ss_b_door_closed,
+        ss_b_seatbelt_fastened
+    ) == true);
 }
 
-void testCheckSafety_true7(void)
+void test_check_safety_true7(void)
 {
-    test_hood_sensor_value = 1;
-    test_trunk_sensor_value = 0;
-    test_door_sensor_value = 0;
-    test_seatbelt_sensor_value = 1;
+    ss_b_hood_closed = true;
+    ss_b_trunk_closed = false;
+    ss_b_door_closed = false;
+    ss_b_seatbelt_fastened = true;
     
-    TEST_ASSERT((safety_check_safety(
-        test_hood_sensor_value,
-        test_trunk_sensor_value,
-        test_door_sensor_value,
-        test_seatbelt_sensor_value
-    ) == 1));
+    TEST_ASSERT(safety_check_safety(
+        ss_b_hood_closed,
+        ss_b_trunk_closed,
+        ss_b_door_closed,
+        ss_b_seatbelt_fastened
+    ) == true);
 }
 
-void testCheckSafety_true8(void)
+void test_check_safety_true8(void)
 {
-    test_hood_sensor_value = 1;
-    test_trunk_sensor_value = 0;
-    test_door_sensor_value = 0;
-    test_seatbelt_sensor_value = 0;
+    ss_b_hood_closed = true;
+    ss_b_trunk_closed = false;
+    ss_b_door_closed = false;
+    ss_b_seatbelt_fastened = false;
     
-    TEST_ASSERT((safety_check_safety(
-        test_hood_sensor_value,
-        test_trunk_sensor_value,
-        test_door_sensor_value,
-        test_seatbelt_sensor_value
-    ) == 1));
+    TEST_ASSERT(safety_check_safety(
+        ss_b_hood_closed,
+        ss_b_trunk_closed,
+        ss_b_door_closed,
+        ss_b_seatbelt_fastened
+    ) == true);
 }
 
-void testCheckSafety_true9(void)
+void test_check_safety_true9(void)
 {
-    test_hood_sensor_value = 0;
-    test_trunk_sensor_value = 1;
-    test_door_sensor_value = 1;
-    test_seatbelt_sensor_value = 1;
+    ss_b_hood_closed = false;
+    ss_b_trunk_closed = true;
+    ss_b_door_closed = true;
+    ss_b_seatbelt_fastened = true;
     
-    TEST_ASSERT((safety_check_safety(
-        test_hood_sensor_value,
-        test_trunk_sensor_value,
-        test_door_sensor_value,
-        test_seatbelt_sensor_value
-    ) == 1));
+    TEST_ASSERT(safety_check_safety(
+        ss_b_hood_closed,
+        ss_b_trunk_closed,
+        ss_b_door_closed,
+        ss_b_seatbelt_fastened
+    ) == true);
 }
 
-void testCheckSafety_true10(void)
+void test_check_safety_true10(void)
 {
-    test_hood_sensor_value = 0;
-    test_trunk_sensor_value = 1;
-    test_door_sensor_value = 1;
-    test_seatbelt_sensor_value = 0;
+    ss_b_hood_closed = false;
+    ss_b_trunk_closed = true;
+    ss_b_door_closed = true;
+    ss_b_seatbelt_fastened = false;
     
-    TEST_ASSERT((safety_check_safety(
-        test_hood_sensor_value,
-        test_trunk_sensor_value,
-        test_door_sensor_value,
-        test_seatbelt_sensor_value
-    ) == 1));
+    TEST_ASSERT(safety_check_safety(
+        ss_b_hood_closed,
+        ss_b_trunk_closed,
+        ss_b_door_closed,
+        ss_b_seatbelt_fastened
+    ) == true);
 }
 
-void testCheckSafety_true11(void)
+void test_check_safety_true11(void)
 {
-    test_hood_sensor_value = 0;
-    test_trunk_sensor_value = 1;
-    test_door_sensor_value = 0;
-    test_seatbelt_sensor_value = 1;
+    ss_b_hood_closed = false;
+    ss_b_trunk_closed = true;
+    ss_b_door_closed = false;
+    ss_b_seatbelt_fastened = true;
     
-    TEST_ASSERT((safety_check_safety(
-        test_hood_sensor_value,
-        test_trunk_sensor_value,
-        test_door_sensor_value,
-        test_seatbelt_sensor_value
-    ) == 1));
+    TEST_ASSERT(safety_check_safety(
+        ss_b_hood_closed,
+        ss_b_trunk_closed,
+        ss_b_door_closed,
+        ss_b_seatbelt_fastened
+    ) == true);
 }
 
-void testCheckSafety_true12(void)
+void test_check_safety_true12(void)
 {
-    test_hood_sensor_value = 0;
-    test_trunk_sensor_value = 1;
-    test_door_sensor_value = 0;
-    test_seatbelt_sensor_value = 0;
+    ss_b_hood_closed = false;
+    ss_b_trunk_closed = true;
+    ss_b_door_closed = false;
+    ss_b_seatbelt_fastened = false;
     
-    TEST_ASSERT((safety_check_safety(
-        test_hood_sensor_value,
-        test_trunk_sensor_value,
-        test_door_sensor_value,
-        test_seatbelt_sensor_value
-    ) == 1));
+    TEST_ASSERT(safety_check_safety(
+        ss_b_hood_closed,
+        ss_b_trunk_closed,
+        ss_b_door_closed,
+        ss_b_seatbelt_fastened
+    ) == true);
 }
 
-void testCheckSafety_true13(void)
+void test_check_safety_true13(void)
 {
-    test_hood_sensor_value = 0;
-    test_trunk_sensor_value = 0;
-    test_door_sensor_value = 1;
-    test_seatbelt_sensor_value = 1;
+    ss_b_hood_closed = false;
+    ss_b_trunk_closed = false;
+    ss_b_door_closed = true;
+    ss_b_seatbelt_fastened = true;
     
-    TEST_ASSERT((safety_check_safety(
-        test_hood_sensor_value,
-        test_trunk_sensor_value,
-        test_door_sensor_value,
-        test_seatbelt_sensor_value
-    ) == 1));
+    TEST_ASSERT(safety_check_safety(
+        ss_b_hood_closed,
+        ss_b_trunk_closed,
+        ss_b_door_closed,
+        ss_b_seatbelt_fastened
+    ) == true);
 }
 
-void testCheckSafety_true14(void)
+void test_check_safety_true14(void)
 {
-    test_hood_sensor_value = 0;
-    test_trunk_sensor_value = 0;
-    test_door_sensor_value = 1;
-    test_seatbelt_sensor_value = 0;
+    ss_b_hood_closed = false;
+    ss_b_trunk_closed = false;
+    ss_b_door_closed = true;
+    ss_b_seatbelt_fastened = false;
     
-    TEST_ASSERT((safety_check_safety(
-        test_hood_sensor_value,
-        test_trunk_sensor_value,
-        test_door_sensor_value,
-        test_seatbelt_sensor_value
-    ) == 1));
+    TEST_ASSERT(safety_check_safety(
+        ss_b_hood_closed,
+        ss_b_trunk_closed,
+        ss_b_door_closed,
+        ss_b_seatbelt_fastened
+    ) == true);
 }
 
-void testCheckSafety_true15(void)
+void test_check_safety_true15(void)
 {
-    test_hood_sensor_value = 0;
-    test_trunk_sensor_value = 0;
-    test_door_sensor_value = 0;
-    test_seatbelt_sensor_value = 1;
+    ss_b_hood_closed = false;
+    ss_b_trunk_closed = false;
+    ss_b_door_closed = false;
+    ss_b_seatbelt_fastened = true;
     
-    TEST_ASSERT((safety_check_safety(
-        test_hood_sensor_value,
-        test_trunk_sensor_value,
-        test_door_sensor_value,
-        test_seatbelt_sensor_value
-    ) == 1));
+    TEST_ASSERT(safety_check_safety(
+        ss_b_hood_closed,
+        ss_b_trunk_closed,
+        ss_b_door_closed,
+        ss_b_seatbelt_fastened
+    ) == true);
 }
 
-void testCheckSafety_false(void)
+void test_check_safety_false(void)
 {
-    test_hood_sensor_value = 0;
-    test_trunk_sensor_value = 0;
-    test_door_sensor_value = 0;
-    test_seatbelt_sensor_value = 0;
+    ss_b_hood_closed = false;
+    ss_b_trunk_closed = false;
+    ss_b_door_closed = false;
+    ss_b_seatbelt_fastened = false;
     
-    TEST_ASSERT((safety_check_safety(
-        test_hood_sensor_value,
-        test_trunk_sensor_value,
-        test_door_sensor_value,
-        test_seatbelt_sensor_value
-    ) == 0));
+    TEST_ASSERT(safety_check_safety(
+        ss_b_hood_closed,
+        ss_b_trunk_closed,
+        ss_b_door_closed,
+        ss_b_seatbelt_fastened
+    ) == false);
 }
 
 int main(void)
 {
     UNITY_BEGIN();
-    RUN_TEST(testCheckSafety_true1);
-    RUN_TEST(testCheckSafety_true2);
-    RUN_TEST(testCheckSafety_true3);
-    RUN_TEST(testCheckSafety_true4);
-    RUN_TEST(testCheckSafety_true5);
-    RUN_TEST(testCheckSafety_true6);
-    RUN_TEST(testCheckSafety_true7);
-    RUN_TEST(testCheckSafety_true8);
-    RUN_TEST(testCheckSafety_true9);
-    RUN_TEST(testCheckSafety_true10);
-    RUN_TEST(testCheckSafety_true11);
-    RUN_TEST(testCheckSafety_true12);
-    RUN_TEST(testCheckSafety_true13);
-    RUN_TEST(testCheckSafety_true14);
-    RUN_TEST(testCheckSafety_true15);
-    RUN_TEST(testCheckSafety_false);
+    RUN_TEST(test_check_safety_true1);
+    RUN_TEST(test_check_safety_true2);
+    RUN_TEST(test_check_safety_true3);
+    RUN_TEST(test_check_safety_true4);
+    RUN_TEST(test_check_safety_true5);
+    RUN_TEST(test_check_safety_true6);
+    RUN_TEST(test_check_safety_true7);
+    RUN_TEST(test_check_safety_true8);
+    RUN_TEST(test_check_safety_true9);
+    RUN_TEST(test_check_safety_true10);
+    RUN_TEST(test_check_safety_true11);
+    RUN_TEST(test_check_safety_true12);
+    RUN_TEST(test_check_safety_true13);
+    RUN_TEST(test_check_safety_true14);
+    RUN_TEST(test_check_safety_true15);
+    RUN_TEST(test_check_safety_false);
     return UNITY_END();
 }

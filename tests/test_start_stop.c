@@ -1,75 +1,85 @@
-// TODO: Refactor test suite.
+#include <stdbool.h>
+#include "src_unity/unity.c"
+#include "../include/start_stop.h"
 
-// #include "src_unity/unity.c"
-// #include "../include/start_stop.h"
+// Test variables
 
-// // Test variables
+sys_in_t ss_s_system_input = { 0 };
+sys_out_t ss_s_system_output = { 0 };
+uint8_t expected;
 
-// uint16_t test_time;
-// uint8_t test_start_stop_status;
-// uint8_t test_engine_status;
-// uint8_t expected;
+// Defining start functions
 
-// // Defining start functions
+void setUp(void) {};
+void tearDown(void) {};
 
-// void setUp(void) {};
-// void tearDown(void) {};
+// Defining test functions
 
-// // Defining test functions
+void test_check_latency_true(void)
+{
+    uint16_t time;
+    
+    ss_s_system_input.ss_b_engine_on = false;
+    ss_s_system_output.ss_b_start_stop_on = false;
 
-// void testCheckSystemLatency_true(void)
-// {
-//     test_start_stop_status = 0;
-//     test_engine_status = 0;
+    for (time = 0; time < 5; time++)
+    {
+        ss_s_system_input.time = time;
 
-//     for (test_time = 0; test_time < 5; test_time++)
-//     {
-//         if (test_time < 2)
-//         {
-//             expected = 0;
-//         }
-//         else
-//         {
-//             expected = 1;
-//         }
+        if (time < 2)
+        {
+            expected = false;
+        }
+        else
+        {
+            expected = true;
+        }
 
-//         TEST_ASSERT(start_stop_check_latency(test_start_stop_status, test_engine_status, test_time) == expected);
-//     }
-// }
+        start_stop_check_latency(&ss_s_system_input, &ss_s_system_output);
 
-// void testCheckSystemLatency_false1(void)
-// {
-//     test_start_stop_status = 0;
-//     test_engine_status = 1;
-//     test_time = 10;
+        TEST_ASSERT(ss_s_system_output.ss_b_latency_alert == expected);
+    }
+}
 
-//     TEST_ASSERT(start_stop_check_latency(test_start_stop_status, test_engine_status, test_time) == 0);
-// }
+void test_check_latency_false1(void)
+{
+    ss_s_system_input.ss_b_engine_on = true;
+    ss_s_system_output.ss_b_start_stop_on = false;
+    ss_s_system_input.time = 10;
 
-// void testCheckSystemLatency_false2(void)
-// {
-//     test_start_stop_status = 1;
-//     test_engine_status = 0;
-//     test_time = 10;
+    start_stop_check_latency(&ss_s_system_input, &ss_s_system_output);
 
-//     TEST_ASSERT(start_stop_check_latency(test_start_stop_status, test_engine_status, test_time) == 0);
-// }
+    TEST_ASSERT(ss_s_system_output.ss_b_latency_alert == false);
+}
 
-// void testCheckSystemLatency_false3(void)
-// {
-//     test_start_stop_status = 1;
-//     test_engine_status = 1;
-//     test_time = 10;
+void test_check_latency_false2(void)
+{
+    ss_s_system_input.ss_b_engine_on = false;
+    ss_s_system_output.ss_b_start_stop_on = true;
+    ss_s_system_input.time = 10;
 
-//     TEST_ASSERT(start_stop_check_latency(test_start_stop_status, test_engine_status, test_time) == 0);
-// }
+    start_stop_check_latency(&ss_s_system_input, &ss_s_system_output);
 
-// int main(void)
-// {
-//     UNITY_BEGIN();
-//     RUN_TEST(testCheckSystemLatency_true);
-//     RUN_TEST(testCheckSystemLatency_false1);
-//     RUN_TEST(testCheckSystemLatency_false2);
-//     RUN_TEST(testCheckSystemLatency_false3);
-//     return UNITY_END();
-// }
+    TEST_ASSERT(ss_s_system_output.ss_b_latency_alert == false);
+}
+
+void test_check_latency_false3(void)
+{
+    ss_s_system_input.ss_b_engine_on = true;
+    ss_s_system_output.ss_b_start_stop_on = true;
+    ss_s_system_input.time = 10;
+
+    start_stop_check_latency(&ss_s_system_input, &ss_s_system_output);
+
+    TEST_ASSERT(ss_s_system_output.ss_b_latency_alert == false);
+}
+
+int main(void)
+{
+    UNITY_BEGIN();
+    RUN_TEST(test_check_latency_true);
+    RUN_TEST(test_check_latency_false1);
+    RUN_TEST(test_check_latency_false2);
+    RUN_TEST(test_check_latency_false3);
+    return UNITY_END();
+}
